@@ -399,13 +399,13 @@
                   <label style="display:block">
                     <span style="display:block;font-weight:600;font-size:14px;color:var(--ink-800);margin-bottom:8px">Curso escolar actual (26/27) <span style="color:var(--gs-pink)">*</span></span>
                     <div style="position:relative">
-                      <select style="width:100%;box-sizing:border-box;appearance:none;font-family:var(--font-body);font-size:15px;color:var(--ink-800);padding:12px 40px 12px 14px;border:1.5px solid var(--border-default);border-radius:10px;background:#fff;cursor:pointer">
+                      <select style="position:relative;z-index:2;width:100%;box-sizing:border-box;appearance:none;font-family:var(--font-body);font-size:15px;color:var(--ink-800);padding:12px 40px 12px 14px;border:1.5px solid var(--border-default);border-radius:10px;background:#fff;cursor:pointer">
                         <option value="">Selecciona</option>
                         <option>5º EP</option><option>6º EP</option>
                         <option>1º ESO</option><option>2º ESO</option>
                         <option>3º ESO</option><option>4º ESO</option>
                       </select>
-                      <i data-lucide="chevron-down" style="width:18px;height:18px;color:var(--ink-400);position:absolute;right:14px;top:50%;transform:translateY(-50%);pointer-events:none"></i>
+                      <span style="position:absolute;right:14px;top:50%;transform:translateY(-50%);pointer-events:none;z-index:1;color:var(--ink-400)"><i data-lucide="chevron-down" style="width:18px;height:18px"></i></span>
                     </div>
                   </label>
                 </div>
@@ -491,12 +491,12 @@
           <label style="display:block">
             <span style="display:block;font-weight:600;font-size:14px;color:var(--ink-800);margin-bottom:8px">Programa <span style="color:var(--gs-pink)">*</span></span>
             <div style="position:relative">
-              <select style="width:100%;box-sizing:border-box;appearance:none;font-family:var(--font-body);font-size:15px;color:var(--ink-800);padding:12px 40px 12px 14px;border:1.5px solid var(--border-default);border-radius:10px;background:#fff;cursor:pointer">
+              <select style="position:relative;z-index:2;width:100%;box-sizing:border-box;appearance:none;font-family:var(--font-body);font-size:15px;color:var(--ink-800);padding:12px 40px 12px 14px;border:1.5px solid var(--border-default);border-radius:10px;background:#fff;cursor:pointer">
                 <option value="">Selecciona un programa</option>
                 <option>Genyus Academy</option>
                 <option>Genyus Lab</option>
               </select>
-              <i data-lucide="chevron-down" style="width:18px;height:18px;color:var(--ink-400);position:absolute;right:14px;top:50%;transform:translateY(-50%);pointer-events:none"></i>
+              <span style="position:absolute;right:14px;top:50%;transform:translateY(-50%);pointer-events:none;z-index:1;color:var(--ink-400)"><i data-lucide="chevron-down" style="width:18px;height:18px"></i></span>
             </div>
           </label>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
@@ -526,12 +526,12 @@
           <label style="display:block">
             <span style="display:block;font-weight:600;font-size:14px;color:var(--ink-800);margin-bottom:8px">¿Qué te gustaría saber? <span style="color:var(--gs-pink)">*</span></span>
             <div style="position:relative">
-              <select style="width:100%;box-sizing:border-box;appearance:none;font-family:var(--font-body);font-size:15px;color:var(--ink-800);padding:12px 40px 12px 14px;border:1.5px solid var(--border-default);border-radius:10px;background:#fff;cursor:pointer">
+              <select style="position:relative;z-index:2;width:100%;box-sizing:border-box;appearance:none;font-family:var(--font-body);font-size:15px;color:var(--ink-800);padding:12px 40px 12px 14px;border:1.5px solid var(--border-default);border-radius:10px;background:#fff;cursor:pointer">
                 <option value="">Selecciona una opción</option>
                 <option>Quiero más información</option>
                 <option>Dudas sobre los temarios</option>
               </select>
-              <i data-lucide="chevron-down" style="width:18px;height:18px;color:var(--ink-400);position:absolute;right:14px;top:50%;transform:translateY(-50%);pointer-events:none"></i>
+              <span style="position:absolute;right:14px;top:50%;transform:translateY(-50%);pointer-events:none;z-index:1;color:var(--ink-400)"><i data-lucide="chevron-down" style="width:18px;height:18px"></i></span>
             </div>
           </label>
           <sc-if value="{{ sentInfo }}" hint-placeholder-val="{{ false }}">
