@@ -23,9 +23,23 @@
     a:hover{color:var(--gs-pink)}
     ::selection{background:rgba(255,53,165,.18)}
     @keyframes gspin{to{transform:rotate(360deg)}}
+    @media (max-width:820px){
+      .al-page{padding-top:72px !important}
+      .al-page [style*="grid-template-columns"]{grid-template-columns:1fr !important}
+      .al-page [style*="gap:56px"]{gap:32px !important}
+      .al-page > section{padding-top:52px !important;padding-bottom:52px !important}
+      .al-page h1{font-size:36px !important}
+      .al-page h2{font-size:28px !important}
+      .al-page h3{font-size:18px !important}
+    }
+    @media (max-width:480px){
+      .al-page{padding-left:2px;padding-right:2px}
+      .al-page h1{font-size:30px !important}
+      .al-page h2{font-size:24px !important}
+    }
   </style>
 </helmet>
-<div style="font-family:var(--font-body);color:var(--ink-800);background:#fff;overflow:hidden;padding-top:96px">
+<div class="al-page" style="font-family:var(--font-body);color:var(--ink-800);background:#fff;overflow:hidden;padding-top:96px">
 
   <!-- ===================== HERO ===================== -->
   <section data-screen-label="Hero" style="position:relative;padding:64px 0 0;background:radial-gradient(120% 90% at 15% 100%, rgba(26,172,255,.10) 0%, rgba(255,255,255,0) 55%),#fff">
