@@ -575,6 +575,13 @@ class Component extends DCLogic {
       fetch(url, { method: "POST", mode: "no-cors", body: JSON.stringify({ text }) });
     } catch (e) {}
   }
+  sheetSend(url, rows) {
+    const payload = {};
+    rows.forEach((r) => { payload[r[0]] = r[1]; });
+    try {
+      fetch(url, { method: "POST", mode: "no-cors", body: JSON.stringify(payload) });
+    } catch (e) {}
+  }
   submitReservar(e) {
     e.preventDefault();
     const rows = this.readForm(e.target);
@@ -582,6 +589,7 @@ class Component extends DCLogic {
     const prog = this.state.program === "academy" ? "Genyus Academy" : this.state.program === "lab" ? "Genyus Lab" : "—";
     rows.unshift(["Programa elegido", prog]);
     this.slackSend(this.hook(["T0B9P10C1C7", "B0BP5KD5WUE", "rN60BNDz82uJLi2" + "xRbTnPOVk"]), "Nueva inscripción — Academy + Lab", rows);
+    this.sheetSend("https://script.google.com/macros/s/AKfycbzmwiuyvYLlA9mp21-L9jdiyVhw95s8MUjjwFqsSjIiS20J3NsNk3avdGyTzcvsx_yRxw/exec", rows);
     this.setState({ sentReservar: true });
   }
   submitInfo(e) {
