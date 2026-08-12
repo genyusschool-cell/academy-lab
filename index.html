@@ -397,32 +397,28 @@
                     <input type="date" style="width:100%;box-sizing:border-box;font-family:var(--font-body);font-size:15px;color:var(--ink-600);padding:12px 14px;border:1.5px solid var(--border-default);border-radius:10px;background:#fff">
                   </label>
                   <label style="display:block">
-                    <span style="display:block;font-weight:600;font-size:14px;color:var(--ink-800);margin-bottom:8px">Curso escolar actual (26/27) <span style="color:var(--gs-pink)">*</span></span>
-                    <div style="position:relative">
-                      <select style="position:relative;z-index:2;width:100%;box-sizing:border-box;appearance:none;font-family:var(--font-body);font-size:15px;color:var(--ink-800);padding:12px 40px 12px 14px;border:1.5px solid var(--border-default);border-radius:10px;background:#fff;cursor:pointer">
-                        <option value="">Selecciona</option>
-                        <option>5º EP</option><option>6º EP</option>
-                        <option>1º ESO</option><option>2º ESO</option>
-                        <option>3º ESO</option><option>4º ESO</option>
-                      </select>
-                      <span style="position:absolute;right:14px;top:50%;transform:translateY(-50%);pointer-events:none;z-index:1;color:var(--ink-400)"><i data-lucide="chevron-down" style="width:18px;height:18px"></i></span>
-                    </div>
+                    <span style="display:block;font-weight:600;font-size:14px;color:var(--ink-800);margin-bottom:8px">Colegio / Centro educativo <span style="color:var(--gs-pink)">*</span></span>
+                    <input type="text" style="width:100%;box-sizing:border-box;font-family:var(--font-body);font-size:15px;color:var(--ink-800);padding:12px 14px;border:1.5px solid var(--border-default);border-radius:10px;background:#fff">
                   </label>
                 </div>
                 <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
                   <label style="display:block">
-                    <span style="display:block;font-weight:600;font-size:14px;color:var(--ink-800);margin-bottom:8px">Colegio / Centro educativo <span style="color:var(--gs-pink)">*</span></span>
-                    <input type="text" style="width:100%;box-sizing:border-box;font-family:var(--font-body);font-size:15px;color:var(--ink-800);padding:12px 14px;border:1.5px solid var(--border-default);border-radius:10px;background:#fff">
-                  </label>
-                  <label style="display:block">
                     <span style="display:block;font-weight:600;font-size:14px;color:var(--ink-800);margin-bottom:8px">Localidad / Municipio <span style="color:var(--gs-pink)">*</span></span>
                     <input type="text" style="width:100%;box-sizing:border-box;font-family:var(--font-body);font-size:15px;color:var(--ink-800);padding:12px 14px;border:1.5px solid var(--border-default);border-radius:10px;background:#fff">
                   </label>
+                  <label style="display:block">
+                    <span style="display:block;font-weight:600;font-size:14px;color:var(--ink-800);margin-bottom:8px">Provincia <span style="color:var(--gs-pink)">*</span></span>
+                    <input type="text" style="width:100%;box-sizing:border-box;font-family:var(--font-body);font-size:15px;color:var(--ink-800);padding:12px 14px;border:1.5px solid var(--border-default);border-radius:10px;background:#fff">
+                  </label>
                 </div>
-                <label style="display:block">
-                  <span style="display:block;font-weight:600;font-size:14px;color:var(--ink-800);margin-bottom:8px">Provincia <span style="color:var(--gs-pink)">*</span></span>
-                  <input type="text" style="width:100%;box-sizing:border-box;font-family:var(--font-body);font-size:15px;color:var(--ink-800);padding:12px 14px;border:1.5px solid var(--border-default);border-radius:10px;background:#fff">
-                </label>
+                <div>
+                  <span style="display:block;font-weight:600;font-size:14px;color:var(--ink-800);margin-bottom:10px">Curso escolar actual (26/27) <span style="color:var(--gs-pink)">*</span></span>
+                  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
+                    <sc-for list="{{ cursos }}" as="c" hint-placeholder-count="6">
+                      <button type="button" onClick="{{ c.onClick }}" style="{{ c.style }}">{{ c.label }}</button>
+                    </sc-for>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -488,17 +484,14 @@
       <div style="position:relative;background:#fff;border:1px solid var(--border-subtle);border-radius:22px;box-shadow:var(--shadow-lg);padding:40px 36px;overflow:hidden">
         <div style="position:absolute;top:0;left:0;right:0;height:6px;background:var(--grad-school)"></div>
         <form onSubmit="{{ submitInfo }}" style="display:flex;flex-direction:column;gap:20px;text-align:left">
-          <label style="display:block">
-            <span style="display:block;font-weight:600;font-size:14px;color:var(--ink-800);margin-bottom:8px">Programa <span style="color:var(--gs-pink)">*</span></span>
-            <div style="position:relative">
-              <select style="position:relative;z-index:2;width:100%;box-sizing:border-box;appearance:none;font-family:var(--font-body);font-size:15px;color:var(--ink-800);padding:12px 40px 12px 14px;border:1.5px solid var(--border-default);border-radius:10px;background:#fff;cursor:pointer">
-                <option value="">Selecciona un programa</option>
-                <option>Genyus Academy</option>
-                <option>Genyus Lab</option>
-              </select>
-              <span style="position:absolute;right:14px;top:50%;transform:translateY(-50%);pointer-events:none;z-index:1;color:var(--ink-400)"><i data-lucide="chevron-down" style="width:18px;height:18px"></i></span>
+          <div>
+            <span style="display:block;font-weight:600;font-size:14px;color:var(--ink-800);margin-bottom:10px">Programa <span style="color:var(--gs-pink)">*</span></span>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+              <sc-for list="{{ infoProgramas }}" as="c" hint-placeholder-count="2">
+                <button type="button" onClick="{{ c.onClick }}" style="{{ c.style }}">{{ c.label }}</button>
+              </sc-for>
             </div>
-          </label>
+          </div>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
             <label style="display:block">
               <span style="display:block;font-weight:600;font-size:14px;color:var(--ink-800);margin-bottom:8px">Nombre <span style="color:var(--gs-pink)">*</span></span>
@@ -523,17 +516,14 @@
               <input type="tel" style="flex:1;min-width:0;box-sizing:border-box;font-family:var(--font-body);font-size:15px;color:var(--ink-800);padding:12px 14px;border:1.5px solid var(--border-default);border-radius:10px;background:#fff">
             </div>
           </label>
-          <label style="display:block">
-            <span style="display:block;font-weight:600;font-size:14px;color:var(--ink-800);margin-bottom:8px">¿Qué te gustaría saber? <span style="color:var(--gs-pink)">*</span></span>
-            <div style="position:relative">
-              <select style="position:relative;z-index:2;width:100%;box-sizing:border-box;appearance:none;font-family:var(--font-body);font-size:15px;color:var(--ink-800);padding:12px 40px 12px 14px;border:1.5px solid var(--border-default);border-radius:10px;background:#fff;cursor:pointer">
-                <option value="">Selecciona una opción</option>
-                <option>Quiero más información</option>
-                <option>Dudas sobre los temarios</option>
-              </select>
-              <span style="position:absolute;right:14px;top:50%;transform:translateY(-50%);pointer-events:none;z-index:1;color:var(--ink-400)"><i data-lucide="chevron-down" style="width:18px;height:18px"></i></span>
+          <div>
+            <span style="display:block;font-weight:600;font-size:14px;color:var(--ink-800);margin-bottom:10px">¿Qué te gustaría saber? <span style="color:var(--gs-pink)">*</span></span>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+              <sc-for list="{{ infoQues }}" as="c" hint-placeholder-count="2">
+                <button type="button" onClick="{{ c.onClick }}" style="{{ c.style }}">{{ c.label }}</button>
+              </sc-for>
             </div>
-          </label>
+          </div>
           <sc-if value="{{ sentInfo }}" hint-placeholder-val="{{ false }}">
             <div style="display:flex;align-items:center;gap:10px;padding:14px 16px;border-radius:12px;background:rgba(22,179,100,.08);border:1px solid rgba(22,179,100,.32)"><i data-lucide="check-circle-2" style="width:20px;height:20px;color:var(--state-success);flex:none"></i><span style="font-weight:700;color:#0f7a44;font-size:14.5px">¡Mensaje enviado! Te responderemos a la brevedad.</span></div>
           </sc-if>
@@ -553,7 +543,7 @@
   &quot;showEcosystem&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Contenido&quot; }
 }">
 class Component extends DCLogic {
-  state = { program: null, phase: "idle", tab: "reservar", sentReservar: false, sentInfo: false };
+  state = { program: null, phase: "idle", tab: "reservar", sentReservar: false, sentInfo: false, cursoSel: null, infoProg: null, infoQue: null };
   pick(key) {
     if (this.state.phase === "checking") return;
     this.setState({ program: key, phase: "checking" });
@@ -588,6 +578,7 @@ class Component extends DCLogic {
   submitReservar(e) {
     e.preventDefault();
     const rows = this.readForm(e.target);
+    rows.push(["Curso escolar actual (26/27)", this.state.cursoSel || "—"]);
     const prog = this.state.program === "academy" ? "Genyus Academy" : this.state.program === "lab" ? "Genyus Lab" : "—";
     rows.unshift(["Programa elegido", prog]);
     this.slackSend(this.hook(["T0B9P10C1C7", "B0BP5KD5WUE", "rN60BNDz82uJLi2" + "xRbTnPOVk"]), "Nueva inscripción — Academy + Lab", rows);
@@ -596,6 +587,8 @@ class Component extends DCLogic {
   submitInfo(e) {
     e.preventDefault();
     const rows = this.readForm(e.target);
+    rows.unshift(["Programa", this.state.infoProg || "—"]);
+    rows.push(["¿Qué te gustaría saber?", this.state.infoQue || "—"]);
     this.slackSend(this.hook(["T0B9P10C1C7", "B0BP5KTTY94", "JZFQFfNmgtqHr" + "FwlCpXHc1WU"]), "Nueva consulta — Contáctanos", rows);
     this.setState({ sentInfo: true });
   }
@@ -610,6 +603,9 @@ class Component extends DCLogic {
       transition: "border-color .18s ease, box-shadow .18s ease",
     };
     const sel = (on, ring, color) => on ? { borderColor: color, boxShadow: "0 0 0 3px " + ring } : {};
+    const chipBase = { padding: "11px 8px", textAlign: "center", border: "1.5px solid var(--border-default)", borderRadius: "10px", background: "#fff", cursor: "pointer", fontFamily: "var(--font-body)", fontSize: "14px", fontWeight: 600, color: "var(--ink-800)", transition: "all .15s ease" };
+    const chipOn = { borderColor: "var(--gs-blue)", background: "rgba(26,172,255,.10)", color: "var(--gs-blue)", boxShadow: "0 0 0 3px rgba(26,172,255,.15)" };
+    const mkChips = (arr, selected, key) => arr.map((label) => ({ label, onClick: () => this.setState({ [key]: label }), style: selected === label ? { ...chipBase, ...chipOn } : chipBase }));
     const tab = this.state.tab;
     const pillBase = { padding: "9px 20px", borderRadius: "999px", fontWeight: 700, fontSize: "14px", border: 0, cursor: "pointer", fontFamily: "var(--font-body)", transition: "all .18s ease" };
     const pillOn = { background: "var(--gs-blue)", color: "#fff", boxShadow: "var(--shadow-blue)" };
@@ -625,6 +621,9 @@ class Component extends DCLogic {
       sentInfo: this.state.sentInfo,
       submitReservar: (e) => this.submitReservar(e),
       submitInfo: (e) => this.submitInfo(e),
+      cursos: mkChips(["5º EP", "6º EP", "1º ESO", "2º ESO", "3º ESO", "4º ESO"], this.state.cursoSel, "cursoSel"),
+      infoProgramas: mkChips(["Genyus Academy", "Genyus Lab"], this.state.infoProg, "infoProg"),
+      infoQues: mkChips(["Quiero más información", "Dudas sobre los temarios"], this.state.infoQue, "infoQue"),
       showAward: p.showAwardBanner ?? true,
       showFloating: p.showFloatingCard ?? true,
       showEcosystem: p.showEcosystem ?? true,
