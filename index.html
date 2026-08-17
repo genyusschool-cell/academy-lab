@@ -268,6 +268,48 @@
         <i data-lucide="info" style="width:20px;height:20px;color:var(--gs-blue);flex:none;margin-top:1px"></i>
         <p style="margin:0;font-size:14.5px;line-height:1.6;color:var(--ink-600)">Todas las sesiones son online por Google Meet. Primaria termina a las 19:00. Genyus Lab es quincenal: los dos grupos alternan semanas (semana A y semana B) en el mismo bloque de los lunes.</p>
       </div>
+
+      <!-- PROGRAMACIÓN CURRICULAR (acordeón) -->
+      <div style="margin-top:56px">
+        <div style="text-align:center;max-width:640px;margin:0 auto">
+          <div style="font-weight:700;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--gs-blue)">Programación curricular</div>
+          <h3 style="font-family:var(--font-display);font-weight:800;letter-spacing:-.02em;line-height:1.1;font-size:30px;color:var(--ink-900);margin:12px 0 0">Qué aprende en cada etapa</h3>
+          <p style="margin:14px 0 0;font-size:15.5px;line-height:1.6;color:var(--ink-600)">Programa Genyus Go, 10 temas por curso. Abre cada etapa para ver el itinerario completo.</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:14px;margin-top:28px;max-width:940px;margin-left:auto;margin-right:auto">
+          <sc-for list="{{ curricula }}" as="cur" hint-placeholder-count="2">
+            <div style="border:1px solid var(--border-subtle);border-radius:16px;background:#fff;box-shadow:var(--shadow-xs);overflow:hidden">
+              <button type="button" onClick="{{ cur.toggle }}" style="{{ cur.headStyle }}">
+                <span style="display:flex;align-items:center;gap:14px">
+                  <span style="width:44px;height:44px;border-radius:12px;background:rgba(26,172,255,.12);color:var(--gs-blue);display:flex;align-items:center;justify-content:center;flex:none"><i data-lucide="book-open" style="width:22px;height:22px"></i></span>
+                  <span style="text-align:left">
+                    <span style="display:block;font-family:var(--font-display);font-weight:800;font-size:19px;color:var(--ink-900)">{{ cur.title }}</span>
+                    <span style="display:block;font-size:13.5px;color:var(--ink-500)">{{ cur.subtitle }}</span>
+                  </span>
+                </span>
+                <span style="{{ cur.chevStyle }}"><i data-lucide="chevron-down" style="width:22px;height:22px"></i></span>
+              </button>
+              <sc-if value="{{ cur.open }}" hint-placeholder-val="{{ false }}">
+                <div style="padding:8px 24px 28px">
+                  <p style="margin:0 0 22px;font-size:14.5px;line-height:1.65;color:var(--ink-600);border-top:1px solid var(--border-subtle);padding-top:20px">{{ cur.intro }}</p>
+                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+                    <sc-for list="{{ cur.temas }}" as="t" hint-placeholder-count="10">
+                      <div style="display:flex;gap:14px;padding:16px;border:1px solid var(--border-subtle);border-radius:12px;background:var(--ink-050)">
+                        <span style="width:30px;height:30px;border-radius:9px;background:var(--gs-blue);color:#fff;font-family:var(--font-display);font-weight:800;font-size:15px;display:flex;align-items:center;justify-content:center;flex:none">{{ t.n }}</span>
+                        <div>
+                          <div style="font-family:var(--font-display);font-weight:800;font-size:15.5px;color:var(--ink-900);line-height:1.25">{{ t.titulo }}</div>
+                          <div style="font-size:11.5px;font-weight:600;color:var(--gs-pink);margin:5px 0 7px;line-height:1.35">{{ t.area }}</div>
+                          <div style="font-size:13px;line-height:1.55;color:var(--ink-600)">{{ t.desc }}</div>
+                        </div>
+                      </div>
+                    </sc-for>
+                  </div>
+                </div>
+              </sc-if>
+            </div>
+          </sc-for>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -543,7 +585,7 @@
   &quot;showEcosystem&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Contenido&quot; }
 }">
 class Component extends DCLogic {
-  state = { program: null, phase: "idle", tab: "reservar", sentReservar: false, sentInfo: false, cursoSel: null, infoProg: null, infoQue: null };
+  state = { program: null, phase: "idle", tab: "reservar", sentReservar: false, sentInfo: false, cursoSel: null, infoProg: null, infoQue: null, openCur: null };
   pick(key) {
     if (this.state.phase === "checking") return;
     this.setState({ program: key, phase: "checking" });
@@ -600,6 +642,42 @@ class Component extends DCLogic {
     this.slackSend(this.hook(["T0B9P10C1C7", "B0BP5KTTY94", "JZFQFfNmgtqHr" + "FwlCpXHc1WU"]), "Nueva consulta — Contáctanos", rows);
     this.setState({ sentInfo: true });
   }
+  curriculaData() {
+    return [
+      {
+        id: "eso12", title: "1º y 2º de ESO", subtitle: "Programa Genyus Go · 10 temas",
+        intro: "El itinerario arranca con el autoconocimiento y la gestión emocional (temas 1-3), continúa con la construcción de equipos y la detección de necesidades reales del entorno (temas 4-5), avanza hacia la generación de ideas y el prototipado de un proyecto propio (temas 6-7), incorpora nociones de presupuesto y finanzas aplicadas al proyecto (tema 8), y culmina con la comunicación del proyecto y su presentación pública (temas 9-10). De forma transversal se trabajan las herramientas digitales, la colaboración en entornos digitales, la comunicación visual y digital, y el uso responsable de la tecnología.",
+        temas: [
+          { n: "1", titulo: "Explorando mi galaxia interior", area: "Área I·B1/B3 + Área II·B1 — Autoconocimiento, relaciones y trabajo en equipo, iniciativa emprendedora", desc: "Trabajamos la identidad en la adolescencia, la autoestima y el establecimiento de objetivos personales, y aplicamos ese autoconocimiento y la resiliencia al arranque de un proyecto en equipo." },
+          { n: "2", titulo: "El pulso de Nexar", area: "Área I·B1/B2/B3 — Autoconocimiento, comunicación efectiva y expresión, relaciones y trabajo en equipo", desc: "Ponemos el foco en el reconocimiento y la gestión de las emociones propias y ajenas, la empatía, el debate argumentado y la comunicación asertiva." },
+          { n: "3", titulo: "Nexos en Nexar", area: "Área I·B1/B2/B3 — Autoconocimiento, comunicación, relaciones y trabajo en equipo", desc: "Exploramos la identidad propia frente a la imagen social y digital y la regulación emocional en grupo, y damos el paso de grupo a equipo de proyecto repartiendo roles y sellando acuerdos." },
+          { n: "4", titulo: "Mi equipo, mi poder", area: "Área I·B2/B3 + Área II·B1/B2/B3 — Comunicación, equipo, iniciativa, creatividad y gestión de proyectos", desc: "Constituimos equipos, asignamos roles y practicamos técnicas básicas de negociación, y desarrollamos el pensamiento crítico y la observación del entorno para detectar necesidades reales." },
+          { n: "5", titulo: "Soluciona como un Nexariano", area: "Área I·B2/B3 + Área II·B1/B2/B3 + Área IV·B2/B3 — Iniciativa, creatividad, gestión de proyectos y planificación financiera", desc: "Detectamos un problema real y definimos el reto que queremos resolver, y damos un primer paso hacia el Business Model Canvas y la planificación financiera inicial." },
+          { n: "6", titulo: "¡Qué Idea tan Genyal!", area: "Área I·B2/B3 + Área II·B1/B2/B3 — Creatividad, prototipado y gestión de proyectos", desc: "Generamos y seleccionamos ideas, definimos los objetivos del proyecto y comenzamos el prototipado, gestionando los recursos económicos, humanos y materiales necesarios." },
+          { n: "7", titulo: "Del Pensamiento al Prototipo", area: "Área I·B2/B3 + Área II·B1/B2/B3/B4 — Prototipado, comunicación y marketing", desc: "Los equipos tangibilizan su idea mediante un prototipo y empiezan a comunicarla a través del storytelling, la identidad visual de marca y los primeros pasos de la huella digital." },
+          { n: "8", titulo: "Recursos y Tesoros", area: "Área I·B3 + Área II·B3 + Área IV (B1-B4) — Recursos, finanzas y ética del emprendimiento", desc: "Identificamos los recursos necesarios y elaboramos un presupuesto del proyecto, avanzando hacia un plan financiero con punto de equilibrio y la ética del beneficio." },
+          { n: "9", titulo: "El pitch galáctico", area: "Área I·B2/B3 + Área II·B2/B4 — Comunicación y marketing", desc: "Preparamos y redactamos el pitch de nuestro proyecto, incorporando su dimensión ética, y recibimos y damos feedback entre compañeros para pulir el mensaje." },
+          { n: "10", titulo: "El Claro del Equilibrio", area: "Todas las áreas — cierre integrador", desc: "Presentamos oralmente nuestro proyecto y hacemos una evaluación final de todo el proceso, cerrando así el itinerario del curso." },
+        ],
+      },
+      {
+        id: "eso34", title: "3º y 4º de ESO", subtitle: "Programa Genyus Go · 10 temas",
+        intro: "Itinerario orientado a la transición hacia la vida adulta y profesional. Arranca con el autoconocimiento y un proyecto de vida (tema 1), sigue con la comunicación del propio perfil mediante el CV y las cartas de presentación (temas 2-3), avanza hacia el trabajo en equipo y el mercado laboral (tema 4), la búsqueda de oportunidades y los procesos de selección (tema 5), el marco legal del trabajo (temas 6-7) y la economía personal y financiera (temas 8-9), y culmina con el diseño de un plan de futuro personal, académico y profesional (tema 10).",
+        temas: [
+          { n: "1", titulo: "Descubriendo mi potencial y mi proyecto de vida", area: "Área I·B1 — Autoconocimiento y desarrollo personal", desc: "Identificamos nuestras capacidades, intereses y valores, damos los primeros pasos en la gestión de la identidad digital y consolidamos la autorregulación emocional para fijar metas SMART." },
+          { n: "2", titulo: "Mi perfil, mi carta de presentación", area: "Área I·B1/B2 + Área II·B1 (evaluable) — Comunicación y expresión, iniciativa emprendedora", desc: "Elaboramos un primer borrador de currículum, con su estructura y palabras clave, y avanzamos hacia el análisis crítico del perfil explorando formatos de CV y su adaptación a ofertas concretas." },
+          { n: "3", titulo: "La comunicación que convence", area: "Área I·B2 (evaluable) — Comunicación efectiva y expresión", desc: "Trabajamos la comunicación formal escrita —cartas de presentación y correos, registro y cortesía— y damos un paso hacia la comunicación persuasiva con la carta de motivación." },
+          { n: "4", titulo: "Colaborar y moverme en el mercado real", area: "Área I·B3 + Área II·B1 — Relaciones y trabajo en equipo, iniciativa y mercado laboral", desc: "Practicamos la escucha activa, el reparto de tareas, la comunicación asertiva y la gestión del tiempo, y las aplicamos al mercado real: identidad digital profesional, networking y búsqueda de oportunidades." },
+          { n: "5", titulo: "Veo oportunidades y me preparo para aprovecharlas", area: "Área II·B1 (evaluable) — Iniciativa y espíritu emprendedor", desc: "Detectamos y analizamos oportunidades leyendo de forma crítica ofertas y anuncios, y nos preparamos para los procesos de selección conociendo tipos de entrevista y estrategias de respuesta." },
+          { n: "6", titulo: "Mi oportunidad de brillar: derechos y deberes", area: "Área II·B1 + Área III·B1 — Iniciativa emprendedora, cultura económica y laboral", desc: "Practicamos la comunicación verbal y no verbal en la entrevista, con auto y coevaluación, y conocemos el marco legal: tipos de contrato, derechos, negociación y dilemas éticos." },
+          { n: "7", titulo: "Más allá de la firma: lo que gano y lo que gasto", area: "Área II·B2 + Área III·B3 — Contrato de trabajo, finanzas aplicadas", desc: "Analizamos los elementos básicos del contrato de trabajo, sus derechos y deberes, y hacemos una lectura crítica de la nómina: ingresos, deducciones e impuestos." },
+          { n: "8", titulo: "Emprendedores por un día: gestiono mi dinero", area: "Área III·B2/B3 (evaluable) — Finanzas aplicadas y gestión financiera", desc: "Conocemos la factura —sus elementos, el IVA y el total— mediante la simulación de una pequeña actividad económica, y avanzamos hacia presupuestos personales, ahorro, inversión y viabilidad." },
+          { n: "9", titulo: "Mis finanzas, mi bienestar y mi liderazgo", area: "Área III·B2/B4 + Área I·B1 — Gestión financiera, bienestar y liderazgo", desc: "Elaboramos nuestro presupuesto personal, clasificamos el gasto y planificamos el ahorro con consumo responsable, y trabajamos el bienestar emocional, la gestión del estrés y el liderazgo adaptativo." },
+          { n: "10", titulo: "Mi plan de futuro", area: "Áreas I, II y III (evaluable) — Cierre integrador", desc: "Nos autopresentamos, formamos equipos complementarios y proponemos un proyecto compartido, cerrando el itinerario con el diseño de nuestro plan de acción personal, académico y profesional." },
+        ],
+      },
+    ];
+  }
   renderVals() {
     const p = this.props || {};
     const { program, phase } = this.state;
@@ -632,6 +710,15 @@ class Component extends DCLogic {
       cursos: mkChips(["5º EP", "6º EP", "1º ESO", "2º ESO", "3º ESO", "4º ESO"], this.state.cursoSel, "cursoSel"),
       infoProgramas: mkChips(["Genyus Academy", "Genyus Lab"], this.state.infoProg, "infoProg"),
       infoQues: mkChips(["Quiero más información", "Dudas sobre los temarios"], this.state.infoQue, "infoQue"),
+      curricula: this.curriculaData().map((c) => {
+        const open = this.state.openCur === c.id;
+        return {
+          ...c, open,
+          toggle: () => this.setState((s) => ({ openCur: s.openCur === c.id ? null : c.id })),
+          headStyle: { display: "flex", alignItems: "center", justifyContent: "space-between", gap: "14px", width: "100%", padding: "20px 24px", border: 0, background: open ? "var(--ink-050)" : "#fff", cursor: "pointer", fontFamily: "var(--font-body)", transition: "background .18s ease" },
+          chevStyle: { display: "inline-flex", color: "var(--ink-400)", transition: "transform .25s ease", transform: open ? "rotate(180deg)" : "rotate(0deg)", flex: "none" },
+        };
+      }),
       showAward: p.showAwardBanner ?? true,
       showFloating: p.showFloatingCard ?? true,
       showEcosystem: p.showEcosystem ?? true,
