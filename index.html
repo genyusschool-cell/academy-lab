@@ -19,6 +19,8 @@
   <style>
     i[data-lucide]{display:inline-flex;align-items:center;justify-content:center;flex:none}
     i[data-lucide] svg,svg[data-lucide]{width:100%;height:100%}
+    html,body{height:auto !important;overflow:visible !important}
+    #dc-root,#dc-root>.sc-host{height:auto !important}
     a{color:var(--color-primary-ink);text-decoration:none}
     a:hover{color:var(--gs-pink)}
     ::selection{background:rgba(255,53,165,.18)}
@@ -298,7 +300,6 @@
                         <span style="width:30px;height:30px;border-radius:9px;background:var(--gs-blue);color:#fff;font-family:var(--font-display);font-weight:800;font-size:15px;display:flex;align-items:center;justify-content:center;flex:none">{{ t.n }}</span>
                         <div>
                           <div style="font-family:var(--font-display);font-weight:800;font-size:15.5px;color:var(--ink-900);line-height:1.25">{{ t.titulo }}</div>
-                          <div style="font-size:11.5px;font-weight:600;color:var(--gs-pink);margin:5px 0 7px;line-height:1.35">{{ t.area }}</div>
                           <div style="font-size:13px;line-height:1.55;color:var(--ink-600)">{{ t.desc }}</div>
                         </div>
                       </div>
