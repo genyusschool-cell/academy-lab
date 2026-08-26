@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Genyus Academy y Genyus Lab · Curso 26-27</title>
+<style>
+@font-face{font-family:"Helotypo";src:url("fonts/Helotypo.otf") format("opentype");font-weight:400;font-display:swap}
+@font-face{font-family:"Nobel Uno";src:url("fonts/NobelUno-Regular.ttf") format("truetype");font-weight:400;font-display:swap}
+@font-face{font-family:"Nobel Uno";src:url("fonts/NobelUno-Medium.ttf") format("truetype");font-weight:500;font-display:swap}
+@font-face{font-family:"Nobel Uno";src:url("fonts/NobelUno-SemiBold.ttf") format("truetype");font-weight:600;font-display:swap}
+@font-face{font-family:"Nobel Uno";src:url("fonts/NobelUno-Bold.ttf") format("truetype");font-weight:700;font-display:swap}
+@font-face{font-family:"Nobel Uno";src:url("fonts/NobelUno-Black.ttf") format("truetype");font-weight:900;font-display:swap}
+
+:root{
+  --gs-blue:#1AACFF;--gs-pink:#FF35A5;--gs-yellow:#FFEA50;--gs-orange:#FF962A;--gs-rose:#FF5E7C;
+  --gb-cyan:#00BBFF;--gu-purple:#965EFF;--gu-pink:#FF35B7;--gu-indigo:#4435FF;
+  --ink-900:#0E1116;--ink-800:#1B2028;--ink-700:#333A45;--ink-600:#566072;--ink-500:#7A8394;
+  --ink-400:#A7AEBC;--ink-300:#CDD3DD;--ink-200:#E6E9F0;--ink-100:#F1F3F8;--ink-050:#F8F9FC;
+  --primary-ink:#0B84D6;--success:#16B364;
+  --border-subtle:var(--ink-200);--border-default:var(--ink-300);
+  --grad-school:linear-gradient(150deg,var(--gs-pink) 0%,var(--gs-rose) 42%,var(--gs-orange) 100%);
+  --grad-sky:linear-gradient(150deg,var(--gs-blue) 0%,var(--gb-cyan) 100%);
+  --grad-sunny:linear-gradient(120deg,var(--gs-yellow) 0%,var(--gs-orange) 100%);
+  --grad-university:linear-gradient(150deg,var(--gu-indigo) 0%,var(--gu-purple) 50%,var(--gu-pink) 100%);
+  --font-display:"Helotypo","Nobel Uno",system-ui,sans-serif;
+  --font-body:"Nobel Uno",system-ui,-apple-system,sans-serif;
+  --sh-xs:0 1px 2px rgba(14,17,22,.05);
+  --sh-sm:0 2px 8px rgba(14,17,22,.07);
+  --sh-md:0 8px 24px rgba(14,17,22,.10);
+  --sh-lg:0 18px 46px rgba(14,17,22,.13);
+  --sh-blue:0 8px 22px rgba(26,172,255,.35);
+  --sh-pink:0 8px 22px rgba(255,53,165,.32);
+  --pad:92px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+html,body{margin:0;padding:0;background:#fff;overscroll-behavior:none}
+body{font-family:var(--font-body);color:var(--ink-800);font-size:16px;line-height:1.5}
+img{display:block;max-width:100%}
+a{color:var(--primary-ink);text-decoration:none}
+a:hover{color:var(--gs-pink)}
+::selection{background:rgba(255,53,165,.18)}
+button{font-family:var(--font-body)}
+h1,h2,h3{font-family:var(--font-display);font-weight:800;letter-spacing:-.02em;margin:0}
+h1{font-size:clamp(30px,4.6vw,60px);line-height:1.04}
+h2{font-size:clamp(25px,3.4vw,42px);line-height:1.1}
+h3{font-size:clamp(17px,1.6vw,21px);line-height:1.25}
+p{margin:0}
+.ic{display:inline-flex;align-items:center;justify-content:center;flex:none}
+.ic svg{width:100%;height:100%;display:block}
+
+.sec{padding:var(--pad) 0}
+.sec--alt{background:var(--ink-050)}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+.wrap--n{max-width:1080px}
+.center{text-align:center;max-width:660px;margin:0 auto}
+.eyebrow{font-weight:700;font-size:12px;letter-spacing:.12em;text-transform:uppercase}
+.eyebrow--blue{color:var(--gs-blue)}
+.eyebrow--pink{color:var(--gs-pink)}
+.lead{margin-top:18px;font-size:clamp(15px,1.5vw,16.5px);line-height:1.6;color:var(--ink-600);text-wrap:pretty}
+.g2,.g3,.split{display:grid}
+.g2{grid-template-columns:1fr 1fr;gap:22px}
+.g3{grid-template-columns:repeat(3,1fr);gap:22px}
+.split{grid-template-columns:1.05fr 1fr;gap:56px;align-items:center}
+.card{background:#fff;border:1px solid var(--border-subtle);border-radius:22px;box-shadow:var(--sh-sm);padding:30px;position:relative;overflow:hidden}
+.card--sm{border-radius:18px;padding:24px}
+.bar{position:absolute;top:0;left:0;right:0;height:6px}
+.bar--sm{height:5px}
+.sq{border-radius:13px;display:flex;align-items:center;justify-content:center;flex:none}
+.sq--44{width:44px;height:44px;border-radius:12px}
+.sq--48{width:48px;height:48px;border-radius:14px}
+.row{display:flex;align-items:center;gap:10px}
+.meta{display:flex;align-items:center;gap:9px;color:var(--ink-700);font-size:14.5px}
+.small{font-size:15px;line-height:1.6;color:var(--ink-600)}
+.pill{padding:5px 12px;border-radius:999px;font-size:12.5px;font-weight:600;background:var(--ink-100);color:var(--ink-600)}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;white-space:nowrap;border:0;border-radius:999px;font-weight:700;cursor:pointer;text-decoration:none;transition:transform .16s cubic-bezier(.34,1.56,.64,1),box-shadow .18s ease}
+.btn:active{transform:scale(.96)}
+.btn--lg{padding:16px 30px;font-size:16.5px}
+.btn--md{padding:12px 22px;font-size:15px}
+.btn--grad{background:var(--grad-school);color:#fff;box-shadow:var(--sh-pink)}
+.btn--grad:hover{color:#fff}
+.btn--sec{background:#fff;color:var(--primary-ink);box-shadow:inset 0 0 0 1.5px var(--gs-blue)}
+.btn--sec:hover{color:var(--primary-ink)}
+.btn--sub{width:100%;border-radius:12px;background:var(--gs-blue);color:#fff;font-size:16px;padding:16px;box-shadow:var(--sh-blue);margin-top:28px}
+
+.hero{position:relative;padding:64px 0 0;background:radial-gradient(120% 90% at 15% 100%,rgba(26,172,255,.10) 0%,rgba(255,255,255,0) 55%),#fff}
+.hero-media{position:relative}
+.hero-media__glow{position:absolute;inset:-14px 24px 40px -18px;background:var(--grad-school);border-radius:26px;transform:rotate(-1.5deg);opacity:.9}
+.hero-media__frame{position:relative;border-radius:22px;overflow:hidden;box-shadow:var(--sh-lg);aspect-ratio:4/5;background:var(--ink-100)}
+.hero-media__frame img{width:100%;height:100%;object-fit:cover}
+.chipbar{display:flex;gap:26px;margin-top:36px;flex-wrap:wrap;color:var(--ink-600);font-weight:500;font-size:14.5px}
+.chipbar span{display:inline-flex;align-items:center;gap:8px}
+.float{position:absolute;left:-18px;bottom:-22px;display:flex;align-items:center;gap:12px;padding:14px 18px;border-radius:16px;background:#fff;box-shadow:var(--sh-md);border:1px solid var(--border-subtle)}
+.award{margin-top:64px;background:var(--grad-sunny);color:#fff}
+.award div{max-width:1120px;margin:0 auto;padding:16px 24px;display:flex;align-items:center;justify-content:center;gap:12px;font-weight:700;font-size:15px;text-align:center}
+
+.prog{display:flex;flex-direction:column;padding:32px}
+.prog__feats{display:flex;flex-direction:column;gap:13px;margin:24px 0}
+.prog__feats span{display:inline-flex;align-items:center;gap:10px;color:var(--ink-700);font-size:15px}
+.prog__foot{border-top:1px solid var(--border-subtle);margin-top:auto;padding-top:20px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.price{font-family:var(--font-display);font-weight:800;font-size:30px;color:var(--ink-900)}
+.price span{font-family:var(--font-body);font-weight:500;font-size:14px;color:var(--ink-500)}
+.tagpremium{position:absolute;top:24px;right:26px;padding:5px 12px;border-radius:999px;background:rgba(255,53,165,.12);color:var(--gs-pink);font-weight:700;font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+
+.feat{display:flex;gap:16px}
+.feat h3{margin:2px 0 6px;font-size:clamp(16px,1.5vw,19px)}
+.lab-grid{display:grid;grid-template-columns:repeat(2,minmax(0,340px));gap:20px}
+.note{display:flex;gap:12px;margin-top:28px;padding:18px 20px;background:#fff;border:1px solid var(--border-subtle);border-radius:14px;box-shadow:var(--sh-xs)}
+
+.acc{border:1px solid var(--border-subtle);border-radius:16px;background:#fff;box-shadow:var(--sh-xs);overflow:hidden}
+.acc__head{display:flex;align-items:center;justify-content:space-between;gap:14px;width:100%;padding:20px 24px;border:0;background:#fff;cursor:pointer;text-align:left}
+.acc__head[aria-expanded="true"]{background:var(--ink-050)}
+.acc__chev{display:inline-flex;color:var(--ink-400);transition:transform .25s ease;flex:none;width:22px;height:22px}
+.acc__head[aria-expanded="true"] .acc__chev{transform:rotate(180deg)}
+.acc__body{padding:8px 24px 28px}
+.acc__body[hidden]{display:none}
+.acc__intro{margin:0 0 22px;font-size:14.5px;line-height:1.65;color:var(--ink-600);border-top:1px solid var(--border-subtle);padding-top:20px}
+.temas{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.tema{display:flex;gap:14px;padding:16px;border:1px solid var(--border-subtle);border-radius:12px;background:var(--ink-050)}
+.tema__n{width:30px;height:30px;border-radius:9px;background:var(--gs-blue);color:#fff;font-family:var(--font-display);font-weight:800;font-size:15px;display:flex;align-items:center;justify-content:center;flex:none}
+.tema__t{font-family:var(--font-display);font-weight:800;font-size:15.5px;color:var(--ink-900);line-height:1.25}
+.tema__d{font-size:13px;line-height:1.55;color:var(--ink-600)}
+
+.eco img{width:100%;height:100%;object-fit:cover}
+.eco__ph{aspect-ratio:16/11;background:var(--ink-100)}
+.eco__ttl{display:flex;align-items:center;gap:9px;padding:16px 18px;font-weight:700;color:var(--ink-900)}
+
+.form-sec{position:relative;background:#fff;padding:var(--pad) 0;overflow:hidden}
+.form-sec__blob{position:absolute;top:-60px;right:-40px;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,rgba(26,172,255,.14),rgba(255,255,255,0) 70%)}
+.tabs{display:inline-flex;gap:4px;margin:20px 0;padding:5px;border-radius:999px;background:var(--ink-100)}
+.tabs button{padding:9px 20px;border-radius:999px;font-weight:700;font-size:14px;border:0;cursor:pointer;background:transparent;color:var(--ink-500);transition:all .18s ease}
+.tabs button[aria-selected="true"]{background:var(--gs-blue);color:#fff;box-shadow:var(--sh-blue)}
+.form-shell{position:relative;max-width:640px;margin:36px auto 0;padding:0 24px}
+.form-card{position:relative;background:#fff;border:1px solid var(--border-subtle);border-radius:22px;box-shadow:var(--sh-lg);padding:40px 36px;overflow:hidden}
+.fset{border-top:1px solid var(--border-subtle);padding-top:22px;margin-top:26px}
+.fset:first-child{margin-top:0}
+.fset__t{font-weight:700;font-size:15px;color:var(--primary-ink);margin-bottom:18px}
+.fields{display:flex;flex-direction:column;gap:18px}
+.lbl{display:block}
+.lbl>span:first-child,.flabel{display:block;font-weight:600;font-size:14px;color:var(--ink-800);margin-bottom:8px}
+.req{color:var(--gs-pink)}
+.inp{width:100%;font-family:var(--font-body);font-size:15px;color:var(--ink-800);padding:12px 14px;border:1.5px solid var(--border-default);border-radius:10px;background:#fff;transition:border-color .15s ease,box-shadow .15s ease}
+.inp:focus{outline:0;border-color:var(--gs-blue);box-shadow:0 0 0 3px rgba(26,172,255,.18)}
+.inp--icon{padding-left:40px}
+.iwrap{position:relative}
+.iwrap .ic{position:absolute;left:13px;top:50%;transform:translateY(-50%);width:18px;height:18px;color:var(--ink-400)}
+.prefix{display:flex;gap:8px}
+.prefix span{display:flex;align-items:center;padding:0 12px;border:1.5px solid var(--border-default);border-radius:10px;font-size:14px;font-weight:600;color:var(--ink-600);background:var(--ink-050);flex:none}
+.hint{display:block;margin-top:8px;font-style:italic;font-size:13px;color:var(--ink-500)}
+.progpick{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.pbtn{display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:16px 18px;border:1.5px solid var(--border-default);border-radius:14px;background:#fff;cursor:pointer;transition:border-color .18s ease,box-shadow .18s ease}
+.pbtn[aria-pressed="true"][data-p="academy"]{border-color:var(--gs-blue);box-shadow:0 0 0 3px rgba(26,172,255,.2)}
+.pbtn[aria-pressed="true"][data-p="lab"]{border-color:var(--gs-pink);box-shadow:0 0 0 3px rgba(255,53,165,.2)}
+.pbtn__t{display:block;font-family:var(--font-display);font-weight:800;font-size:16px;color:var(--ink-900)}
+.pbtn__s{display:block;font-size:13px;color:var(--ink-500)}
+.pbtn__ok{width:20px;height:20px;flex:none}
+.pbtn[data-p="academy"] .pbtn__ok{color:var(--gs-blue)}
+.pbtn[data-p="lab"] .pbtn__ok{color:var(--gs-pink)}
+.chips{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.chips--2{grid-template-columns:1fr 1fr}
+.chip{padding:11px 8px;text-align:center;border:1.5px solid var(--border-default);border-radius:10px;background:#fff;cursor:pointer;font-size:14px;font-weight:600;color:var(--ink-800);transition:all .15s ease}
+.chip[aria-pressed="true"]{border-color:var(--gs-blue);background:rgba(26,172,255,.1);color:var(--gs-blue);box-shadow:0 0 0 3px rgba(26,172,255,.15)}
+.status{display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:12px;margin-bottom:22px}
+.status--wait{background:var(--ink-050);border:1px solid var(--border-subtle);font-weight:600;color:var(--ink-700);font-size:15px}
+.status--ok{background:rgba(22,179,100,.08);border:1px solid rgba(22,179,100,.32);font-weight:700;color:#0f7a44;font-size:15px}
+.spin{width:20px;height:20px;border-radius:50%;border:2.5px solid var(--ink-200);border-top-color:var(--gs-blue);animation:gspin .7s linear infinite;flex:none}
+@keyframes gspin{to{transform:rotate(360deg)}}
+.body-locked{filter:blur(7px);opacity:.5;pointer-events:none;user-select:none}
+.fbody{display:flex;flex-direction:column;transition:filter .5s ease,opacity .5s ease}
+.sched{display:flex;gap:14px;align-items:flex-start;padding:18px 20px;border-radius:14px;background:linear-gradient(135deg,rgba(26,172,255,.1),rgba(255,53,165,.12));border:1.5px solid rgba(255,53,165,.3);box-shadow:0 6px 22px rgba(255,53,165,.12)}
+.sched__k{font-family:var(--font-display);font-weight:800;font-size:12.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--gs-pink);margin-bottom:5px}
+.sched__t{margin:0;font-size:15px;line-height:1.55;color:var(--ink-900);font-weight:600}
+.sched__s{margin:6px 0 0;font-size:13.5px;line-height:1.5;color:var(--ink-600)}
+.check{display:flex;gap:12px;align-items:flex-start;cursor:pointer}
+.check input{width:18px;height:18px;margin-top:3px;flex:none;accent-color:var(--gs-blue)}
+.check span{font-size:13.5px;line-height:1.55;color:var(--ink-700)}
+[hidden]{display:none !important}
+
+@media (max-width:1000px){
+  :root{--pad:68px}
+  .split{grid-template-columns:1fr;gap:34px}
+  .g3{grid-template-columns:repeat(2,1fr)}
+  .hero{padding-top:44px}
+  .hero-media{max-width:520px;margin:0 auto}
+  .lab-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .temas{grid-template-columns:1fr}
+}
+@media (max-width:720px){
+  :root{--pad:52px}
+  .wrap{padding:0 18px}
+  .g2,.g3,.lab-grid,.progpick{grid-template-columns:1fr}
+  .g2,.g3{gap:16px}
+  .card{padding:24px;border-radius:18px}
+  .prog{padding:24px}
+  .form-shell{padding:0 14px}
+  .form-card{padding:26px 20px;border-radius:18px}
+  .chips{grid-template-columns:1fr 1fr}
+  .float{position:static;left:auto;bottom:auto;margin-top:16px}
+  .tagpremium{position:static;align-self:flex-start;margin-bottom:14px;display:inline-block}
+  .acc__head{padding:16px}
+  .acc__body{padding:4px 16px 22px}
+  .award div{font-size:14px;text-align:left}
+  .price{font-size:26px}
+}
+@media (max-width:420px){
+  .wrap{padding:0 14px}
+  .chips{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap split">
+    <div>
+      <div class="row eyebrow eyebrow--pink" style="display:inline-flex;padding:7px 15px;border-radius:999px;background:rgba(255,53,165,.1);gap:8px">
+        <span class="ic" data-i="rocket" style="width:15px;height:15px"></span>Emprendimiento para jóvenes
+      </div>
+      <h1 style="margin-top:20px;color:var(--ink-900)">Despertamos la mente <span style="color:var(--gs-blue)">emprendedora</span> de tu hijo/a</h1>
+      <p style="margin-top:22px;max-width:520px;font-size:17px;line-height:1.6;color:var(--ink-600);text-wrap:pretty">Dos itinerarios en directo para niños y jóvenes de 5.º de Primaria a 4.º de la ESO: <strong style="color:var(--ink-800)">Genyus Academy</strong>, la extraescolar semanal de emprendimiento, y <strong style="color:var(--ink-800)">Genyus Lab</strong>, mentorías grupales quincenales de alto rendimiento.</p>
+      <div style="display:flex;align-items:center;gap:22px;margin-top:32px;flex-wrap:wrap">
+        <a class="btn btn--grad btn--lg js-go" href="#inscripcion" data-target="inscripcion">Reservar plaza</a>
+        <a class="js-go" href="#programas" data-target="programas" style="display:inline-flex;align-items:center;gap:12px;font-weight:700;color:var(--ink-900)">
+          <span style="width:40px;height:40px;border-radius:999px;border:1.5px solid var(--ink-300);display:flex;align-items:center;justify-content:center;color:var(--gs-blue)"><span class="ic" data-i="play" style="width:16px;height:16px"></span></span>
+          Ver los programas
+        </a>
+      </div>
+      <div class="chipbar">
+        <span><span class="ic" data-i="video" style="width:18px;height:18px;color:var(--gs-pink)"></span>Clases en directo</span>
+        <span><span class="ic" data-i="users" style="width:18px;height:18px;color:var(--gs-pink)"></span>Grupos reducidos</span>
+        <span><span class="ic" data-i="layers" style="width:18px;height:18px;color:var(--gs-pink)"></span>Un grupo por etapa</span>
+      </div>
+    </div>
+    <div class="hero-media">
+      <div class="hero-media__glow"></div>
+      <div class="hero-media__frame">
+        <img src="uploads/Fotos%20GENYUS%20MINDS%20S.L.%2014%205.jpeg" alt="Alumnos de Genyus Academy trabajando en equipo">
+        <div style="position:absolute;top:16px;right:16px;display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border-radius:999px;background:#fff;box-shadow:var(--sh-sm);font-weight:700;font-size:13px;color:var(--ink-900)">
+          <span style="width:9px;height:9px;border-radius:50%;background:var(--success)"></span>Curso 26 · 27
+        </div>
+      </div>
+      <div class="float">
+        <span class="sq" style="width:42px;height:42px;border-radius:12px;background:rgba(26,172,255,.12);color:var(--gs-blue)"><span class="ic" data-i="rocket" style="width:22px;height:22px"></span></span>
+        <div>
+          <div style="font-weight:700;color:var(--ink-900);font-size:15px">Sesiones de 90 min</div>
+          <div style="color:var(--ink-500);font-size:13px">En directo, cada semana</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="award">
+    <div><span class="ic" data-i="trophy" style="width:20px;height:20px"></span>Premio Mejor Proyecto de Educación de España 2025</div>
+  </div>
+</section>
+
+<!-- MÉTODO -->
+<section class="sec sec--alt">
+  <div class="wrap">
+    <div class="center">
+      <div class="eyebrow eyebrow--blue">Nuestro método</div>
+      <h2 style="margin-top:14px;color:var(--ink-900)">Aprender haciendo, con propósito</h2>
+      <p class="lead">Basado en la metodología Genyus Go: cada etapa tiene su propio grupo y contenidos adaptados a su madurez. No memorizan teoría: idean, prototipan y defienden proyectos reales.</p>
+    </div>
+    <div class="g3" style="margin-top:52px;gap:24px">
+      <div class="card">
+        <span class="sq sq--48" style="background:rgba(26,172,255,.12);color:var(--gs-blue)"><span class="ic" data-i="lightbulb" style="width:24px;height:24px"></span></span>
+        <h3 style="margin:22px 0 10px;color:var(--ink-900)">Mentalidad emprendedora</h3>
+        <p class="small">Iniciativa, creatividad y resolución de problemas. Aprenden a detectar oportunidades y convertir ideas en proyectos.</p>
+      </div>
+      <div class="card">
+        <span class="sq sq--48" style="background:rgba(255,53,165,.12);color:var(--gs-pink)"><span class="ic" data-i="heart" style="width:24px;height:24px"></span></span>
+        <h3 style="margin:22px 0 10px;color:var(--ink-900)">Habilidades para la vida</h3>
+        <p class="small">Empatía, autoconocimiento, liderazgo y alfabetización financiera. Competencias que trascienden el aula.</p>
+      </div>
+      <div class="card">
+        <span class="sq sq--48" style="background:rgba(255,150,42,.15);color:var(--gs-orange)"><span class="ic" data-i="presentation" style="width:24px;height:24px"></span></span>
+        <h3 style="margin:22px 0 10px;color:var(--ink-900)">Comunicar y defender ideas</h3>
+        <p class="small">Presentan y defienden sus proyectos ante el grupo, entrenando la seguridad y la comunicación en público.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACADEMY Y LAB -->
+<section class="sec" id="programas">
+  <div class="wrap wrap--n">
+    <div class="center">
+      <div class="eyebrow eyebrow--pink">Dos formas de crecer</div>
+      <h2 style="margin-top:14px;color:var(--ink-900)">Academy y Lab</h2>
+      <p class="lead">Empieza en la extraescolar semanal y, cuando el proyecto despega, da el salto a las mentorías de alto rendimiento.</p>
+    </div>
+    <div class="g2" style="margin-top:48px;gap:26px">
+      <div class="card prog">
+        <div class="bar" style="background:var(--grad-sky)"></div>
+        <div class="row" style="gap:14px">
+          <span class="sq" style="width:46px;height:46px;background:rgba(26,172,255,.12);color:var(--gs-blue)"><span class="ic" data-i="cap" style="width:24px;height:24px"></span></span>
+          <div>
+            <div style="font-family:var(--font-display);font-weight:800;font-size:23px;color:var(--ink-900)">Genyus Academy</div>
+            <div style="color:var(--ink-500);font-size:14px">La extraescolar de emprendimiento</div>
+          </div>
+        </div>
+        <p class="small" style="margin-top:20px">Clases semanales en directo de 90 minutos. Un itinerario progresivo por curso escolar, de 5.º de Primaria a 4.º de la ESO.</p>
+        <div class="prog__feats">
+          <span><span class="ic" data-i="repeat" style="width:19px;height:19px;color:var(--gs-blue)"></span>Frecuencia semanal</span>
+          <span><span class="ic" data-i="users" style="width:19px;height:19px;color:var(--gs-blue)"></span>Grupos de 4 a 10 alumnos</span>
+          <span><span class="ic" data-i="caldays" style="width:19px;height:19px;color:var(--gs-blue)"></span>5.º Primaria – 4.º ESO</span>
+        </div>
+        <div class="prog__foot">
+          <div class="price">80 €<span> / mes</span></div>
+          <a class="btn btn--sec btn--md js-go" href="#inscripcion" data-target="inscripcion">Reservar plaza</a>
+        </div>
+      </div>
+      <div class="card prog" style="box-shadow:var(--sh-md)">
+        <div class="bar" style="background:var(--grad-school)"></div>
+        <div class="tagpremium">Premium</div>
+        <div class="row" style="gap:14px">
+          <span class="sq" style="width:46px;height:46px;background:rgba(255,53,165,.12);color:var(--gs-pink)"><span class="ic" data-i="rocket" style="width:24px;height:24px"></span></span>
+          <div>
+            <div style="font-family:var(--font-display);font-weight:800;font-size:23px;color:var(--ink-900)">Genyus Lab</div>
+            <div style="color:var(--ink-500);font-size:14px">Mentorías de alto rendimiento</div>
+          </div>
+        </div>
+        <p class="small" style="margin-top:20px">Mentorías grupales quincenales para alumnos con un proyecto propio en marcha. Acompañamiento estratégico y acceso restringido por candidatura.</p>
+        <div class="prog__feats">
+          <span><span class="ic" data-i="repeat" style="width:19px;height:19px;color:var(--gs-pink)"></span>Frecuencia quincenal</span>
+          <span><span class="ic" data-i="users" style="width:19px;height:19px;color:var(--gs-pink)"></span>Grupos de 4 a 6 alumnos</span>
+          <span><span class="ic" data-i="shield" style="width:19px;height:19px;color:var(--gs-pink)"></span>Acceso por candidatura · 13-17 años</span>
+        </div>
+        <div class="prog__foot">
+          <div class="price">100 €<span> / mes</span></div>
+          <a class="btn btn--grad btn--md js-go" href="#inscripcion" data-target="inscripcion">Reservar plaza</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- METODOLOGÍA -->
+<section class="sec sec--alt">
+  <div class="wrap split">
+    <div style="border-radius:22px;overflow:hidden;box-shadow:var(--sh-lg);aspect-ratio:16/11;background:var(--ink-900)">
+      <img src="uploads/extra%20escolar.png" alt="Clase en directo por Google Meet" style="width:100%;height:100%;object-fit:cover">
+    </div>
+    <div>
+      <div class="eyebrow eyebrow--pink">Metodología</div>
+      <h2 style="margin-top:14px;color:var(--ink-900)">Clases en directo, en grupos reducidos</h2>
+      <div style="display:flex;flex-direction:column;gap:26px;margin-top:34px">
+        <div class="feat">
+          <span class="sq sq--44" style="background:rgba(26,172,255,.12);color:var(--gs-blue)"><span class="ic" data-i="video" style="width:22px;height:22px"></span></span>
+          <div><h3 style="color:var(--ink-900)">90 minutos por sesión</h3><p class="small">Sesiones en directo por Google Meet: semanales en Academy, quincenales en Lab. Explicación, dinámicas y trabajo aplicado sobre retos reales.</p></div>
+        </div>
+        <div class="feat">
+          <span class="sq sq--44" style="background:rgba(255,53,165,.12);color:var(--gs-pink)"><span class="ic" data-i="users" style="width:22px;height:22px"></span></span>
+          <div><h3 style="color:var(--ink-900)">Grupos pequeños</h3><p class="small">De 4 a 10 alumnos en Academy y de 4 a 6 en Lab, para cuidar la participación y la atención individual de cada alumno.</p></div>
+        </div>
+        <div class="feat">
+          <span class="sq sq--44" style="background:rgba(255,150,42,.15);color:var(--gs-orange)"><span class="ic" data-i="layers" style="width:22px;height:22px"></span></span>
+          <div><h3 style="color:var(--ink-900)">Progresión por curso escolar</h3><p class="small">El itinerario avanza de forma escalonada, acoplado al nivel madurativo y curricular de cada grupo.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HORARIO -->
+<section class="sec sec--alt" style="padding-top:0">
+  <div class="wrap">
+    <div class="center">
+      <div class="eyebrow eyebrow--pink">Horario · Curso 26-27</div>
+      <h2 style="margin-top:14px;color:var(--ink-900)">Encuentra la franja de tu hijo/a</h2>
+      <p class="lead">Arrancamos concentrando el programa en dos tardes. Cada etapa tiene su día y su bloque fijo.</p>
+    </div>
+
+    <div class="row" style="gap:12px;margin:44px 0 20px;flex-wrap:wrap">
+      <span class="sq" style="width:38px;height:38px;border-radius:11px;background:rgba(26,172,255,.12);color:var(--gs-blue)"><span class="ic" data-i="cap" style="width:20px;height:20px"></span></span>
+      <span style="font-family:var(--font-display);font-weight:800;font-size:21px;color:var(--ink-900)">Genyus Academy</span>
+      <span class="pill">Semanal · 4–10 alumnos</span>
+    </div>
+    <div class="g3" style="gap:20px">
+      <div class="card card--sm">
+        <div class="bar bar--sm" style="background:var(--grad-sky)"></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;color:var(--ink-400)"><span class="eyebrow" style="color:var(--ink-500);letter-spacing:.1em">Ciclo primaria</span><span class="ic" data-i="cal" style="width:16px;height:16px"></span></div>
+        <div style="font-family:var(--font-display);font-weight:800;font-size:20px;color:var(--ink-900);margin:10px 0 16px">5º / 6º Educación Primaria</div>
+        <div class="meta" style="margin-bottom:9px"><span class="ic" data-i="caldays" style="width:17px;height:17px;color:var(--gs-blue)"></span>Lunes</div>
+        <div class="meta"><span class="ic" data-i="clock" style="width:17px;height:17px;color:var(--gs-blue)"></span>17:30 – 19:00</div>
+      </div>
+      <div class="card card--sm">
+        <div class="bar bar--sm" style="background:var(--grad-sunny)"></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;color:var(--ink-400)"><span class="eyebrow" style="color:var(--ink-500);letter-spacing:.1em">Ciclo secundaria inicial</span><span class="ic" data-i="cal" style="width:16px;height:16px"></span></div>
+        <div style="font-family:var(--font-display);font-weight:800;font-size:20px;color:var(--ink-900);margin:10px 0 16px">1º / 2º ESO</div>
+        <div class="meta" style="margin-bottom:9px"><span class="ic" data-i="caldays" style="width:17px;height:17px;color:var(--gs-orange)"></span>Martes</div>
+        <div class="meta"><span class="ic" data-i="clock" style="width:17px;height:17px;color:var(--gs-orange)"></span>17:30 – 19:00</div>
+      </div>
+      <div class="card card--sm">
+        <div class="bar bar--sm" style="background:var(--grad-university)"></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;color:var(--ink-400)"><span class="eyebrow" style="color:var(--ink-500);letter-spacing:.1em">Ciclo secundaria avanzado</span><span class="ic" data-i="cal" style="width:16px;height:16px"></span></div>
+        <div style="font-family:var(--font-display);font-weight:800;font-size:20px;color:var(--ink-900);margin:10px 0 16px">3º / 4º ESO</div>
+        <div class="meta" style="margin-bottom:9px"><span class="ic" data-i="caldays" style="width:17px;height:17px;color:var(--gu-purple)"></span>Martes</div>
+        <div class="meta"><span class="ic" data-i="clock" style="width:17px;height:17px;color:var(--gu-purple)"></span>19:00 – 20:30</div>
+      </div>
+    </div>
+
+    <div class="row" style="gap:12px;margin:40px 0 20px;flex-wrap:wrap">
+      <span class="sq" style="width:38px;height:38px;border-radius:11px;background:rgba(255,53,165,.12);color:var(--gs-pink)"><span class="ic" data-i="rocket" style="width:20px;height:20px"></span></span>
+      <span style="font-family:var(--font-display);font-weight:800;font-size:21px;color:var(--ink-900)">Genyus Lab</span>
+      <span class="pill">Quincenal · 4–6 alumnos</span>
+    </div>
+    <div class="lab-grid">
+      <div class="card card--sm">
+        <div class="bar bar--sm" style="background:var(--grad-school)"></div>
+        <div style="display:flex;justify-content:space-between;align-items:center"><span class="eyebrow" style="color:var(--gs-pink);letter-spacing:.1em">Grupo · Semana A</span><span class="ic" data-i="cal" style="width:16px;height:16px;color:var(--ink-400)"></span></div>
+        <div style="font-family:var(--font-display);font-weight:800;font-size:20px;color:var(--ink-900);margin:10px 0 16px">Genyus Lab</div>
+        <div class="meta" style="margin-bottom:9px"><span class="ic" data-i="caldays" style="width:17px;height:17px;color:var(--gs-pink)"></span>Lunes</div>
+        <div class="meta"><span class="ic" data-i="clock" style="width:17px;height:17px;color:var(--gs-pink)"></span>19:00 – 20:30</div>
+      </div>
+      <div class="card card--sm">
+        <div class="bar bar--sm" style="background:var(--grad-school)"></div>
+        <div style="display:flex;justify-content:space-between;align-items:center"><span class="eyebrow" style="color:var(--gs-pink);letter-spacing:.1em">Grupo · Semana B</span><span class="ic" data-i="cal" style="width:16px;height:16px;color:var(--ink-400)"></span></div>
+        <div style="font-family:var(--font-display);font-weight:800;font-size:20px;color:var(--ink-900);margin:10px 0 16px">Genyus Lab</div>
+        <div class="meta" style="margin-bottom:9px"><span class="ic" data-i="caldays" style="width:17px;height:17px;color:var(--gs-pink)"></span>Lunes</div>
+        <div class="meta"><span class="ic" data-i="clock" style="width:17px;height:17px;color:var(--gs-pink)"></span>19:00 – 20:30</div>
+      </div>
+    </div>
+
+    <div class="note">
+      <span class="ic" data-i="info" style="width:20px;height:20px;color:var(--gs-blue);margin-top:1px"></span>
+      <p style="font-size:14.5px;line-height:1.6;color:var(--ink-600)">Todas las sesiones son online por Google Meet. Primaria termina a las 19:00. Genyus Lab es quincenal: los dos grupos alternan semanas (semana A y semana B) en el mismo bloque de los lunes.</p>
+    </div>
+
+    <!-- PROGRAMACIÓN CURRICULAR -->
+    <div style="margin-top:56px">
+      <div class="center">
+        <div class="eyebrow eyebrow--blue">Programación curricular</div>
+        <h3 style="margin-top:12px;font-size:clamp(22px,2.6vw,30px);color:var(--ink-900)">Qué aprende en cada etapa</h3>
+        <p class="lead" style="margin-top:14px;font-size:15.5px">Programa Genyus Go, 10 temas por curso. Abre cada etapa para ver el itinerario completo.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px;margin:28px auto 0;max-width:940px">
+
+        <div class="acc">
+          <button class="acc__head js-acc" type="button" aria-expanded="false" aria-controls="cur-eso12">
+            <span style="display:flex;align-items:center;gap:14px">
+              <span class="sq sq--44" style="background:rgba(26,172,255,.12);color:var(--gs-blue)"><span class="ic" data-i="book" style="width:22px;height:22px"></span></span>
+              <span>
+                <span style="display:block;font-family:var(--font-display);font-weight:800;font-size:19px;color:var(--ink-900)">1º y 2º de ESO</span>
+                <span style="display:block;font-size:13.5px;color:var(--ink-500)">Programa Genyus Go · 10 temas</span>
+              </span>
+            </span>
+            <span class="acc__chev ic" data-i="chev"></span>
+          </button>
+          <div class="acc__body" id="cur-eso12" hidden>
+            <p class="acc__intro">El itinerario arranca con el autoconocimiento y la gestión emocional (temas 1-3), continúa con la construcción de equipos y la detección de necesidades reales del entorno (temas 4-5), avanza hacia la generación de ideas y el prototipado de un proyecto propio (temas 6-7), incorpora nociones de presupuesto y finanzas aplicadas al proyecto (tema 8), y culmina con la comunicación del proyecto y su presentación pública (temas 9-10). De forma transversal se trabajan las herramientas digitales, la colaboración en entornos digitales, la comunicación visual y digital, y el uso responsable de la tecnología.</p>
+            <div class="temas">
+              <div class="tema"><span class="tema__n">1</span><div><div class="tema__t">Explorando mi galaxia interior</div><div class="tema__d">Trabajamos la identidad en la adolescencia, la autoestima y el establecimiento de objetivos personales, y aplicamos ese autoconocimiento y la resiliencia al arranque de un proyecto en equipo.</div></div></div>
+              <div class="tema"><span class="tema__n">2</span><div><div class="tema__t">El pulso de Nexar</div><div class="tema__d">Ponemos el foco en el reconocimiento y la gestión de las emociones propias y ajenas, la empatía, el debate argumentado y la comunicación asertiva.</div></div></div>
+              <div class="tema"><span class="tema__n">3</span><div><div class="tema__t">Nexos en Nexar</div><div class="tema__d">Exploramos la identidad propia frente a la imagen social y digital y la regulación emocional en grupo, y damos el paso de grupo a equipo de proyecto repartiendo roles y sellando acuerdos.</div></div></div>
+              <div class="tema"><span class="tema__n">4</span><div><div class="tema__t">Mi equipo, mi poder</div><div class="tema__d">Constituimos equipos, asignamos roles y practicamos técnicas básicas de negociación, y desarrollamos el pensamiento crítico y la observación del entorno para detectar necesidades reales.</div></div></div>
+              <div class="tema"><span class="tema__n">5</span><div><div class="tema__t">Soluciona como un Nexariano</div><div class="tema__d">Detectamos un problema real y definimos el reto que queremos resolver, y damos un primer paso hacia el Business Model Canvas y la planificación financiera inicial.</div></div></div>
+              <div class="tema"><span class="tema__n">6</span><div><div class="tema__t">¡Qué Idea tan Genyal!</div><div class="tema__d">Generamos y seleccionamos ideas, definimos los objetivos del proyecto y comenzamos el prototipado, gestionando los recursos económicos, humanos y materiales necesarios.</div></div></div>
+              <div class="tema"><span class="tema__n">7</span><div><div class="tema__t">Del Pensamiento al Prototipo</div><div class="tema__d">Los equipos tangibilizan su idea mediante un prototipo y empiezan a comunicarla a través del storytelling, la identidad visual de marca y los primeros pasos de la huella digital.</div></div></div>
+              <div class="tema"><span class="tema__n">8</span><div><div class="tema__t">Recursos y Tesoros</div><div class="tema__d">Identificamos los recursos necesarios y elaboramos un presupuesto del proyecto, avanzando hacia un plan financiero con punto de equilibrio y la ética del beneficio.</div></div></div>
+              <div class="tema"><span class="tema__n">9</span><div><div class="tema__t">El pitch galáctico</div><div class="tema__d">Preparamos y redactamos el pitch de nuestro proyecto, incorporando su dimensión ética, y recibimos y damos feedback entre compañeros para pulir el mensaje.</div></div></div>
+              <div class="tema"><span class="tema__n">10</span><div><div class="tema__t">El Claro del Equilibrio</div><div class="tema__d">Presentamos oralmente nuestro proyecto y hacemos una evaluación final de todo el proceso, cerrando así el itinerario del curso.</div></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="acc">
+          <button class="acc__head js-acc" type="button" aria-expanded="false" aria-controls="cur-eso34">
+            <span style="display:flex;align-items:center;gap:14px">
+              <span class="sq sq--44" style="background:rgba(26,172,255,.12);color:var(--gs-blue)"><span class="ic" data-i="book" style="width:22px;height:22px"></span></span>
+              <span>
+                <span style="display:block;font-family:var(--font-display);font-weight:800;font-size:19px;color:var(--ink-900)">3º y 4º de ESO</span>
+                <span style="display:block;font-size:13.5px;color:var(--ink-500)">Programa Genyus Go · 10 temas</span>
+              </span>
+            </span>
+            <span class="acc__chev ic" data-i="chev"></span>
+          </button>
+          <div class="acc__body" id="cur-eso34" hidden>
+            <p class="acc__intro">Itinerario orientado a la transición hacia la vida adulta y profesional. Arranca con el autoconocimiento y un proyecto de vida (tema 1), sigue con la comunicación del propio perfil mediante el CV y las cartas de presentación (temas 2-3), avanza hacia el trabajo en equipo y el mercado laboral (tema 4), la búsqueda de oportunidades y los procesos de selección (tema 5), el marco legal del trabajo (temas 6-7) y la economía personal y financiera (temas 8-9), y culmina con el diseño de un plan de futuro personal, académico y profesional (tema 10).</p>
+            <div class="temas">
+              <div class="tema"><span class="tema__n">1</span><div><div class="tema__t">Descubriendo mi potencial y mi proyecto de vida</div><div class="tema__d">Identificamos nuestras capacidades, intereses y valores, damos los primeros pasos en la gestión de la identidad digital y consolidamos la autorregulación emocional para fijar metas SMART.</div></div></div>
+              <div class="tema"><span class="tema__n">2</span><div><div class="tema__t">Mi perfil, mi carta de presentación</div><div class="tema__d">Elaboramos un primer borrador de currículum, con su estructura y palabras clave, y avanzamos hacia el análisis crítico del perfil explorando formatos de CV y su adaptación a ofertas concretas.</div></div></div>
+              <div class="tema"><span class="tema__n">3</span><div><div class="tema__t">La comunicación que convence</div><div class="tema__d">Trabajamos la comunicación formal escrita —cartas de presentación y correos, registro y cortesía— y damos un paso hacia la comunicación persuasiva con la carta de motivación.</div></div></div>
+              <div class="tema"><span class="tema__n">4</span><div><div class="tema__t">Colaborar y moverme en el mercado real</div><div class="tema__d">Practicamos la escucha activa, el reparto de tareas, la comunicación asertiva y la gestión del tiempo, y las aplicamos al mercado real: identidad digital profesional, networking y búsqueda de oportunidades.</div></div></div>
+              <div class="tema"><span class="tema__n">5</span><div><div class="tema__t">Veo oportunidades y me preparo para aprovecharlas</div><div class="tema__d">Detectamos y analizamos oportunidades leyendo de forma crítica ofertas y anuncios, y nos preparamos para los procesos de selección conociendo tipos de entrevista y estrategias de respuesta.</div></div></div>
+              <div class="tema"><span class="tema__n">6</span><div><div class="tema__t">Mi oportunidad de brillar: derechos y deberes</div><div class="tema__d">Practicamos la comunicación verbal y no verbal en la entrevista, con auto y coevaluación, y conocemos el marco legal: tipos de contrato, derechos, negociación y dilemas éticos.</div></div></div>
+              <div class="tema"><span class="tema__n">7</span><div><div class="tema__t">Más allá de la firma: lo que gano y lo que gasto</div><div class="tema__d">Analizamos los elementos básicos del contrato de trabajo, sus derechos y deberes, y hacemos una lectura crítica de la nómina: ingresos, deducciones e impuestos.</div></div></div>
+              <div class="tema"><span class="tema__n">8</span><div><div class="tema__t">Emprendedores por un día: gestiono mi dinero</div><div class="tema__d">Conocemos la factura —sus elementos, el IVA y el total— mediante la simulación de una pequeña actividad económica, y avanzamos hacia presupuestos personales, ahorro, inversión y viabilidad.</div></div></div>
+              <div class="tema"><span class="tema__n">9</span><div><div class="tema__t">Mis finanzas, mi bienestar y mi liderazgo</div><div class="tema__d">Elaboramos nuestro presupuesto personal, clasificamos el gasto y planificamos el ahorro con consumo responsable, y trabajamos el bienestar emocional, la gestión del estrés y el liderazgo adaptativo.</div></div></div>
+              <div class="tema"><span class="tema__n">10</span><div><div class="tema__t">Mi plan de futuro</div><div class="tema__d">Nos autopresentamos, formamos equipos complementarios y proponemos un proyecto compartido, cerrando el itinerario con el diseño de nuestro plan de acción personal, académico y profesional.</div></div></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POR QUÉ 9-10 AÑOS -->
+<section class="sec">
+  <div class="wrap wrap--n">
+    <div style="max-width:620px">
+      <div class="eyebrow eyebrow--blue">A partir de 5.º de Primaria</div>
+      <h2 style="margin-top:14px;color:var(--ink-900)">Por qué empezamos a los 9-10 años</h2>
+      <p class="lead">No es una barrera arbitraria: es una decisión pedagógica para que la experiencia funcione de verdad para cada alumno.</p>
+    </div>
+    <div class="g2" style="margin-top:44px;gap:20px">
+      <div class="feat" style="background:var(--ink-050);border:1px solid var(--border-subtle);border-radius:18px;padding:26px">
+        <span class="sq sq--44" style="background:rgba(26,172,255,.12);color:var(--gs-blue)"><span class="ic" data-i="face" style="width:22px;height:22px"></span></span>
+        <div><h3 style="margin:2px 0 8px;font-size:18px;color:var(--ink-900)">Atención sostenida</h3><p class="small" style="font-size:14.5px">A partir de los 9-10 años se sostienen bloques largos de trabajo dirigido ante la pantalla sin perder aprovechamiento.</p></div>
+      </div>
+      <div class="feat" style="background:var(--ink-050);border:1px solid var(--border-subtle);border-radius:18px;padding:26px">
+        <span class="sq sq--44" style="background:rgba(255,53,165,.12);color:var(--gs-pink)"><span class="ic" data-i="devices" style="width:22px;height:22px"></span></span>
+        <div><h3 style="margin:2px 0 8px;font-size:18px;color:var(--ink-900)">Madurez digital</h3><p class="small" style="font-size:14.5px">Manejan con autonomía la videollamada, compartir pantalla y los turnos de palabra, sin necesidad de un adulto al lado.</p></div>
+      </div>
+      <div class="feat" style="background:var(--ink-050);border:1px solid var(--border-subtle);border-radius:18px;padding:26px">
+        <span class="sq sq--44" style="background:rgba(255,150,42,.15);color:var(--gs-orange)"><span class="ic" data-i="book" style="width:22px;height:22px"></span></span>
+        <div><h3 style="margin:2px 0 8px;font-size:18px;color:var(--ink-900)">Lectoescritura y razonamiento</h3><p class="small" style="font-size:14.5px">Conceptos como propuesta de valor o validación piden una lectoescritura consolidada y razonamiento abstracto.</p></div>
+      </div>
+      <div class="feat" style="background:var(--ink-050);border:1px solid var(--border-subtle);border-radius:18px;padding:26px">
+        <span class="sq sq--44" style="background:rgba(22,179,100,.14);color:var(--success)"><span class="ic" data-i="users" style="width:22px;height:22px"></span></span>
+        <div><h3 style="margin:2px 0 8px;font-size:18px;color:var(--ink-900)">Grupos homogéneos</h3><p class="small" style="font-size:14.5px">Una franja de edad común protege la cohesión del grupo y el ritmo de aprendizaje de todos.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ECOSISTEMA -->
+<section class="sec sec--alt">
+  <div class="wrap">
+    <div class="center" style="max-width:600px">
+      <div class="eyebrow eyebrow--pink">Parte de un ecosistema real</div>
+      <h2 style="margin-top:14px;font-size:clamp(24px,3.1vw,38px);color:var(--ink-900)">Conectados con el emprendimiento que ocurre fuera del aula</h2>
+      <p class="lead">Genyus forma parte del Movimiento Future Minds y del ecosistema emprendedor español. Nuestros alumnos crecen mirando a los grandes referentes del sector.</p>
+    </div>
+    <div class="g3 eco" style="margin-top:48px">
+      <div style="background:#fff;border:1px solid var(--border-subtle);border-radius:18px;box-shadow:var(--sh-sm);overflow:hidden">
+        <div class="eco__ph"><img src="uploads/south%20Summit.JPG" alt="South Summit"></div>
+        <div class="eco__ttl"><span class="ic" data-i="star" style="width:17px;height:17px;color:var(--gs-orange)"></span>South Summit</div>
+      </div>
+      <div style="background:#fff;border:1px solid var(--border-subtle);border-radius:18px;box-shadow:var(--sh-sm);overflow:hidden">
+        <div class="eco__ph"><img src="uploads/Startup%20Ole%CC%81%20Genyus%202025%2021.JPG" alt="Startup OLÉ"></div>
+        <div class="eco__ttl"><span class="ic" data-i="star" style="width:17px;height:17px;color:var(--gs-orange)"></span>Startup OLÉ</div>
+      </div>
+      <div style="background:#fff;border:1px solid var(--border-subtle);border-radius:18px;box-shadow:var(--sh-sm);overflow:hidden">
+        <div class="eco__ph"><img src="uploads/Future%20mind%20Fest.png" alt="Future Minds Fest"></div>
+        <div class="eco__ttl"><span class="ic" data-i="star" style="width:17px;height:17px;color:var(--gs-orange)"></span>Future Minds Fest</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSCRIPCIÓN -->
+<section class="form-sec" id="inscripcion">
+  <div class="form-sec__blob"></div>
+  <div class="wrap" style="position:relative;max-width:720px;text-align:center">
+    <div class="eyebrow eyebrow--pink">Inscripción · Curso 26-27</div>
+    <div class="tabs">
+      <button type="button" id="tab-res" aria-selected="true">Reservar plaza</button>
+      <button type="button" id="tab-info" aria-selected="false">Más info</button>
+    </div>
+    <div id="head-res">
+      <h2 style="color:var(--ink-900)">Reserva la plaza de tu hijo/a</h2>
+      <p style="margin-top:16px;font-size:16px;line-height:1.6;color:var(--ink-600)">Completa la solicitud y te confirmamos el grupo y el horario. Plazas limitadas por grupo, sin compromiso.</p>
+    </div>
+    <div id="head-info" hidden>
+      <h2 style="color:var(--ink-900)">Contáctanos</h2>
+      <p style="margin-top:16px;font-size:16px;line-height:1.6;color:var(--ink-600)">Completa el formulario y te responderemos a la brevedad.</p>
+    </div>
+  </div>
+
+  <!-- FORM RESERVAR -->
+  <div class="form-shell" id="panel-res">
+    <div class="form-card">
+      <div class="bar" style="background:var(--grad-school)"></div>
+      <form id="form-res" style="text-align:left">
+        <div style="margin-bottom:22px">
+          <span class="flabel">Seleccione un programa para comprobar disponibilidad<span class="req">*</span></span>
+          <div class="progpick">
+            <button class="pbtn" type="button" data-p="academy" aria-pressed="false">
+              <span class="sq" style="width:42px;height:42px;border-radius:11px;background:rgba(26,172,255,.12);color:var(--gs-blue)"><span class="ic" data-i="cap" style="width:22px;height:22px"></span></span>
+              <span style="flex:1;min-width:0"><span class="pbtn__t">Genyus Academy</span><span class="pbtn__s">Extraescolar · 80 € / mes</span></span>
+              <span class="pbtn__ok ic" data-i="check" hidden></span>
+            </button>
+            <button class="pbtn" type="button" data-p="lab" aria-pressed="false">
+              <span class="sq" style="width:42px;height:42px;border-radius:11px;background:rgba(255,53,165,.12);color:var(--gs-pink)"><span class="ic" data-i="rocket" style="width:22px;height:22px"></span></span>
+              <span style="flex:1;min-width:0"><span class="pbtn__t">Genyus Lab</span><span class="pbtn__s">Mentorías · 100 € / mes</span></span>
+              <span class="pbtn__ok ic" data-i="check" hidden></span>
+            </button>
+          </div>
+        </div>
+
+        <div class="status status--wait" id="st-wait" hidden><span class="spin"></span><span>Revisando disponibilidad…</span></div>
+        <div class="status status--ok" id="st-ok" hidden><span class="ic" data-i="check" style="width:22px;height:22px;color:var(--success)"></span><span>¡Tenemos lugar para tu hijo/a!</span></div>
+
+        <div class="fbody body-locked" id="fbody">
+          <div class="fset">
+            <div class="fset__t">1 · Datos del alumno/a</div>
+            <div class="fields">
+              <label class="lbl"><span>Nombre y apellidos del alumno/a <span class="req">*</span></span>
+                <input class="inp" type="text" data-k="Nombre y apellidos del alumno/a"></label>
+              <div class="g2" style="gap:20px">
+                <label class="lbl"><span>Fecha de nacimiento <span class="req">*</span></span>
+                  <input class="inp" type="date" data-k="Fecha de nacimiento" style="color:var(--ink-600)"></label>
+                <label class="lbl"><span>Colegio / Centro educativo <span class="req">*</span></span>
+                  <input class="inp" type="text" data-k="Colegio / Centro educativo"></label>
+              </div>
+              <div class="g2" style="gap:20px">
+                <label class="lbl"><span>Localidad / Municipio <span class="req">*</span></span>
+                  <input class="inp" type="text" data-k="Localidad / Municipio"></label>
+                <label class="lbl"><span>Provincia <span class="req">*</span></span>
+                  <input class="inp" type="text" data-k="Provincia"></label>
+              </div>
+              <div id="wrap-cursos" hidden>
+                <span class="flabel">Curso escolar actual (26/27) <span class="req">*</span></span>
+                <div class="chips" id="cursos"></div>
+              </div>
+              <div class="sched" id="sched" hidden>
+                <span class="sq" style="width:40px;height:40px;border-radius:11px;background:#fff;box-shadow:var(--sh-sm);color:var(--gs-pink)"><span class="ic" data-i="caldays" style="width:22px;height:22px"></span></span>
+                <div>
+                  <div class="sched__k">¡Importante!</div>
+                  <p class="sched__t" id="sched-t"></p>
+                  <p class="sched__s" id="sched-s" hidden></p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="fset">
+            <div class="fset__t">2 · Datos del Padre, Madre o Tutor legal</div>
+            <div class="fields">
+              <label class="lbl"><span>Nombre y apellidos <span class="req">*</span></span>
+                <input class="inp" type="text" data-k="Nombre y apellidos del tutor"></label>
+              <div class="g2" style="gap:20px">
+                <label class="lbl"><span>Teléfono de contacto <span class="req">*</span></span>
+                  <div class="prefix"><span>+34</span><input class="inp" type="tel" data-k="Teléfono de contacto"></div></label>
+                <label class="lbl"><span>Correo Electrónico <span class="req">*</span></span>
+                  <div class="iwrap"><span class="ic" data-i="mail"></span><input class="inp inp--icon" type="email" data-k="Correo Electrónico"></div></label>
+              </div>
+              <label class="lbl"><span>Datos bancarios / de facturación (IBAN) <span class="req">*</span></span>
+                <input class="inp" type="text" placeholder="ES00 0000 0000 0000 0000 0000" data-k="IBAN">
+                <span class="hint">*Campo necesario para gestionar las cuotas mensuales</span></label>
+            </div>
+          </div>
+
+          <div class="fset">
+            <div class="fset__t">3 · Consentimientos</div>
+            <div class="fields" style="gap:16px">
+              <label class="check"><input type="checkbox" data-k="Declaración de autonomía digital">
+                <span><strong style="color:var(--ink-900)">Declaración de autonomía digital:</strong> Confirmo que el alumno cuenta con conexión a internet, cámara, micrófono y la madurez digital necesaria para interactuar, compartir pantalla y entregar tareas de forma autónoma en Google Meet durante los 90 minutos de clase. <span class="req">*</span></span></label>
+              <label class="check"><input type="checkbox" data-k="Consentimiento legal y protección del menor">
+                <span><strong style="color:var(--ink-900)">Consentimiento legal y protección del menor:</strong> Aceptación de los términos legales, especialmente enfocada en la protección del menor para el rango de edad de los participantes. <span class="req">*</span></span></label>
+            </div>
+          </div>
+
+          <div class="status status--ok" id="sent-res" hidden style="margin:22px 0 0"><span class="ic" data-i="check" style="width:20px;height:20px;color:var(--success)"></span><span>¡Inscripción enviada! Te contactaremos muy pronto.</span></div>
+          <button class="btn btn--sub" type="submit">Inscribir a mi hijo/a</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- FORM MÁS INFO -->
+  <div class="form-shell" id="panel-info" hidden>
+    <div class="form-card">
+      <div class="bar" style="background:var(--grad-school)"></div>
+      <form id="form-info" style="display:flex;flex-direction:column;gap:20px;text-align:left">
+        <div>
+          <span class="flabel">Programa <span class="req">*</span></span>
+          <div class="chips chips--2" id="info-prog"></div>
+        </div>
+        <div class="g2" style="gap:20px">
+          <label class="lbl"><span>Nombre <span class="req">*</span></span><input class="inp" type="text" data-k="Nombre"></label>
+          <label class="lbl"><span>Apellido <span class="req">*</span></span><input class="inp" type="text" data-k="Apellido"></label>
+        </div>
+        <label class="lbl"><span>Email <span class="req">*</span></span>
+          <div class="iwrap"><span class="ic" data-i="mail"></span><input class="inp inp--icon" type="email" data-k="Email"></div></label>
+        <label class="lbl"><span>Teléfono <span class="req">*</span></span>
+          <div class="prefix"><span>+34</span><input class="inp" type="tel" data-k="Teléfono"></div></label>
+        <div>
+          <span class="flabel">¿Qué te gustaría saber? <span class="req">*</span></span>
+          <div class="chips chips--2" id="info-que"></div>
+        </div>
+        <div class="status status--ok" id="sent-info" hidden style="margin:0"><span class="ic" data-i="check" style="width:20px;height:20px;color:var(--success)"></span><span>¡Mensaje enviado! Te responderemos a la brevedad.</span></div>
+        <button class="btn btn--sub" type="submit" style="margin-top:8px">Enviar</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  "use strict";
+  /* ---------- iconos (SVG inline, sin CDN) ---------- */
+  var P = {
+    rocket:"M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91 0M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5",
+    play:"m6 3 14 9-14 9z",
+    video:"m22 8-6 4 6 4zM4 6h10a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z",
+    users:"M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 3a4 4 0 1 0 0 8 4 4 0 0 0 0-8M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75",
+    layers:"M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83zM2 12.5l8.58 3.91a2 2 0 0 0 1.66 0L22 12.5M2 17.5l8.58 3.91a2 2 0 0 0 1.66 0L22 17.5",
+    trophy:"M6 9H4.5a2.5 2.5 0 0 1 0-5H6M18 9h1.5a2.5 2.5 0 0 0 0-5H18M4 22h16M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22M18 2H6v7a6 6 0 0 0 12 0z",
+    lightbulb:"M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5a6 6 0 0 0-12 0c0 1 .2 2.2 1.5 3.5.8.8 1.3 1.5 1.5 2.5M9 18h6M10 22h4",
+    heart:"M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7z",
+    presentation:"M2 3h20M21 3v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V3M7 21l5-5 5 5",
+    cap:"M22 10 12 5 2 10l10 5zM6 12v5c3 2.5 9 2.5 12 0v-5",
+    repeat:"m17 2 4 4-4 4M3 11v-1a4 4 0 0 1 4-4h14M7 22l-4-4 4-4M21 13v1a4 4 0 0 1-4 4H3",
+    caldays:"M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zM8 2v4M16 2v4M3 10h18M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01",
+    cal:"M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zM8 2v4M16 2v4M3 10h18",
+    clock:"M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20M12 6v6l4 2",
+    shield:"M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10M9 12l2 2 4-4",
+    info:"M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20M12 16v-4M12 8h.01",
+    book:"M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z",
+    chev:"m6 9 6 6 6-6",
+    face:"M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01",
+    devices:"M18 8V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h8M6 21h6M10 17v4M18 10h2a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2z",
+    star:"m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z",
+    mail:"M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm18 3-10 6L2 7",
+    check:"M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20m-3 10 2 2 4-4"
+  };
+  document.querySelectorAll(".ic[data-i]").forEach(function(el){
+    var d = P[el.getAttribute("data-i")];
+    if(!d) return;
+    el.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="'+d+'"></path></svg>';
+  });
+
+  /* ---------- scroll a secciones (funciona dentro y fuera de un iframe) ---------- */
+  function scroller(el){
+    var n = el.parentElement;
+    while(n && n !== document.body){
+      var cs = getComputedStyle(n);
+      if(/(auto|scroll|overlay)/.test(cs.overflowY) && n.scrollHeight > n.clientHeight + 4) return n;
+      n = n.parentElement;
+    }
+    return null;
+  }
+  function goTo(id){
+    var el = document.getElementById(id);
+    if(!el) return;
+    var box = scroller(el), top = el.getBoundingClientRect().top, off = 20;
+    if(box){ box.scrollTo({top: box.scrollTop + top - box.getBoundingClientRect().top - off, behavior:"smooth"}); }
+    else {
+      var se = document.scrollingElement || document.documentElement;
+      var y = (window.pageYOffset || se.scrollTop || 0) + top - off;
+      if(window.scrollTo) window.scrollTo({top:y, behavior:"smooth"}); else se.scrollTop = y;
+    }
+    /* si la página vive incrustada, avisamos al contenedor por si escucha */
+    try{ window.parent.postMessage({genyus:"scrollTo", id:id, offset: (document.getElementById(id).getBoundingClientRect().top + (window.pageYOffset||0))}, "*"); }catch(e){}
+  }
+  document.querySelectorAll(".js-go").forEach(function(a){
+    a.addEventListener("click", function(e){
+      e.preventDefault();
+      var t = a.getAttribute("data-target");
+      if(t === "inscripcion") setTab("res");
+      goTo(t);
+    });
+  });
+
+  /* ---------- altura al contenedor (auto-resize del embed si escucha) ---------- */
+  var lastH = 0;
+  function pingHeight(){
+    var h = Math.ceil(document.documentElement.scrollHeight);
+    if(Math.abs(h - lastH) < 2) return;
+    lastH = h;
+    try{
+      window.parent.postMessage({genyus:"height", height:h}, "*");
+      window.parent.postMessage(["setHeight", h], "*");
+      window.parent.postMessage("genyus-height:" + h, "*");
+    }catch(e){}
+  }
+  window.addEventListener("load", pingHeight);
+  window.addEventListener("resize", pingHeight);
+  if(window.ResizeObserver) new ResizeObserver(pingHeight).observe(document.body);
+  setInterval(pingHeight, 800);
+
+  /* ---------- acordeón ---------- */
+  document.querySelectorAll(".js-acc").forEach(function(b){
+    b.addEventListener("click", function(){
+      var open = b.getAttribute("aria-expanded") === "true";
+      document.querySelectorAll(".js-acc").forEach(function(o){
+        o.setAttribute("aria-expanded","false");
+        document.getElementById(o.getAttribute("aria-controls")).hidden = true;
+      });
+      if(!open){
+        b.setAttribute("aria-expanded","true");
+        document.getElementById(b.getAttribute("aria-controls")).hidden = false;
+      }
+      pingHeight();
+    });
+  });
+
+  /* ---------- pestañas ---------- */
+  function setTab(which){
+    var res = which === "res";
+    document.getElementById("tab-res").setAttribute("aria-selected", res);
+    document.getElementById("tab-info").setAttribute("aria-selected", !res);
+    document.getElementById("head-res").hidden = !res;
+    document.getElementById("head-info").hidden = res;
+    document.getElementById("panel-res").hidden = !res;
+    document.getElementById("panel-info").hidden = res;
+    pingHeight();
+  }
+  document.getElementById("tab-res").addEventListener("click", function(){ setTab("res"); });
+  document.getElementById("tab-info").addEventListener("click", function(){ setTab("info"); });
+
+  /* ---------- chips ---------- */
+  function chips(host, items, onPick){
+    host.innerHTML = "";
+    items.forEach(function(label){
+      var b = document.createElement("button");
+      b.type = "button"; b.className = "chip"; b.textContent = label;
+      b.setAttribute("aria-pressed","false");
+      b.addEventListener("click", function(){
+        host.querySelectorAll(".chip").forEach(function(c){ c.setAttribute("aria-pressed","false"); });
+        b.setAttribute("aria-pressed","true");
+        onPick(label);
+      });
+      host.appendChild(b);
+    });
+  }
+
+  var state = { program:null, curso:null, infoProg:null, infoQue:null };
+  var HORARIO = {
+    "5º EP":"Lunes de 17:30 a 19:00","6º EP":"Lunes de 17:30 a 19:00",
+    "1º ESO":"Martes de 17:30 a 19:00","2º ESO":"Martes de 17:30 a 19:00",
+    "3º ESO":"Martes de 19:00 a 20:30","4º ESO":"Martes de 19:00 a 20:30"
+  };
+  var sched = document.getElementById("sched"),
+      schedT = document.getElementById("sched-t"),
+      schedS = document.getElementById("sched-s");
+
+  function renderSched(){
+    if(state.program === "lab"){
+      sched.hidden = false;
+      schedT.textContent = "Genyus Lab se dará los días Lunes de 19:00 a 20:30hs.";
+      schedS.hidden = false;
+      schedS.textContent = "Sesiones quincenales: los grupos de semana A y semana B alternan los lunes.";
+    } else if(state.program === "academy" && state.curso && HORARIO[state.curso]){
+      sched.hidden = false;
+      schedT.textContent = "Genyus Academy para " + state.curso + " se dará los días " + HORARIO[state.curso] + "hs.";
+      schedS.hidden = true;
+    } else {
+      sched.hidden = true;
+    }
+    pingHeight();
+  }
+
+  chips(document.getElementById("cursos"), ["5º EP","6º EP","1º ESO","2º ESO","3º ESO","4º ESO"], function(v){ state.curso = v; renderSched(); });
+  chips(document.getElementById("info-prog"), ["Genyus Academy","Genyus Lab"], function(v){ state.infoProg = v; });
+  chips(document.getElementById("info-que"), ["Quiero más información","Dudas sobre los temarios"], function(v){ state.infoQue = v; });
+
+  var timer = null;
+  document.querySelectorAll(".pbtn").forEach(function(b){
+    b.addEventListener("click", function(){
+      var p = b.getAttribute("data-p");
+      if(state.program === p) return;
+      state.program = p; state.curso = null;
+      document.querySelectorAll(".pbtn").forEach(function(o){
+        var on = o === b;
+        o.setAttribute("aria-pressed", on);
+        o.querySelector(".pbtn__ok").hidden = !on;
+      });
+      document.getElementById("wrap-cursos").hidden = p !== "academy";
+      document.getElementById("cursos").querySelectorAll(".chip").forEach(function(c){ c.setAttribute("aria-pressed","false"); });
+      renderSched();
+      document.getElementById("st-ok").hidden = true;
+      document.getElementById("st-wait").hidden = false;
+      document.getElementById("fbody").classList.add("body-locked");
+      clearTimeout(timer);
+      timer = setTimeout(function(){
+        document.getElementById("st-wait").hidden = true;
+        document.getElementById("st-ok").hidden = false;
+        document.getElementById("fbody").classList.remove("body-locked");
+        pingHeight();
+      }, 2000);
+      pingHeight();
+    });
+  });
+
+  /* ---------- envío ---------- */
+  function hook(parts){ return ["https://hooks.slack.com/services"].concat(parts).join("/"); }
+  function collect(form){
+    var rows = [];
+    form.querySelectorAll("[data-k]").forEach(function(c){
+      var k = c.getAttribute("data-k");
+      if(c.type === "checkbox") rows.push([k, c.checked ? "Sí" : "No"]);
+      else rows.push([k, (c.value||"").trim() || "—"]);
+    });
+    return rows;
+  }
+  function slack(url, title, rows){
+    var text = "*" + title + "*\n" + rows.map(function(r){ return "• *" + r[0] + ":* " + r[1]; }).join("\n");
+    try{ fetch(url, {method:"POST", mode:"no-cors", body: JSON.stringify({text:text})}); }catch(e){}
+  }
+  function sheet(url, rows){
+    var payload = {};
+    rows.forEach(function(r){ payload[r[0]] = r[1]; });
+    try{ fetch(url, {method:"POST", mode:"no-cors", body: JSON.stringify(payload)}); }catch(e){}
+  }
+
+  document.getElementById("form-res").addEventListener("submit", function(e){
+    e.preventDefault();
+    var rows = collect(e.target);
+    rows.push(["Curso escolar actual (26/27)", state.curso || "—"]);
+    rows.unshift(["Programa elegido", state.program === "academy" ? "Genyus Academy" : state.program === "lab" ? "Genyus Lab" : "—"]);
+    slack(hook(["T0B9P10C1C7","B0BP5KD5WUE","rN60BNDz82uJLi2" + "xRbTnPOVk"]), "Nueva inscripción — Academy + Lab", rows);
+    sheet("https://script.google.com/macros/s/AKfycbzmwiuyvYLlA9mp21-L9jdiyVhw95s8MUjjwFqsSjIiS20J3NsNk3avdGyTzcvsx_yRxw/exec", rows);
+    document.getElementById("sent-res").hidden = false;
+    pingHeight();
+  });
+
+  document.getElementById("form-info").addEventListener("submit", function(e){
+    e.preventDefault();
+    var rows = collect(e.target);
+    rows.unshift(["Programa", state.infoProg || "—"]);
+    rows.push(["¿Qué te gustaría saber?", state.infoQue || "—"]);
+    slack(hook(["T0B9P10C1C7","B0BP5KTTY94","JZFQFfNmgtqHr" + "FwlCpXHc1WU"]), "Nueva consulta — Contáctanos", rows);
+    document.getElementById("sent-info").hidden = false;
+    pingHeight();
+  });
+
+  /* ancla directa en la URL: /#inscripcion */
+  if(location.hash){
+    var id = location.hash.slice(1);
+    if(document.getElementById(id)) setTimeout(function(){ if(id==="inscripcion") setTab("res"); goTo(id); }, 300);
+  }
+})();
+</script>
+</body>
+</html>
