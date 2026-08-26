@@ -19,12 +19,18 @@
   <style>
     i[data-lucide]{display:inline-flex;align-items:center;justify-content:center;flex:none}
     i[data-lucide] svg,svg[data-lucide]{width:100%;height:100%}
-    html,body{height:auto !important;overflow:visible !important}
-    #dc-root,#dc-root>.sc-host{height:auto !important}
+    html,body{height:auto !important;min-height:0 !important;max-height:none !important;overflow:visible !important;overscroll-behavior:none}
+    #dc-root,#dc-root>.sc-host,#dc-root .sc-host{height:auto !important;min-height:0 !important;max-height:none !important;overflow:visible !important}
+    html{scroll-behavior:smooth}
     a{color:var(--color-primary-ink);text-decoration:none}
     a:hover{color:var(--gs-pink)}
     ::selection{background:rgba(255,53,165,.18)}
     @keyframes gspin{to{transform:rotate(360deg)}}
+    @media (max-width:1024px){
+      .al-page > section{padding-top:68px !important;padding-bottom:68px !important}
+      .al-page h1{font-size:46px !important}
+      .al-page h2{font-size:33px !important}
+    }
     @media (max-width:820px){
       .al-page{padding-top:72px !important}
       .al-page [style*="grid-template-columns"]{grid-template-columns:1fr !important}
@@ -33,11 +39,16 @@
       .al-page h1{font-size:36px !important}
       .al-page h2{font-size:28px !important}
       .al-page h3{font-size:18px !important}
+      .al-page [style*="grid-template-columns:repeat(3"]{grid-template-columns:1fr !important}
+      .al-page [style*="padding:40px 36px"]{padding:28px 20px !important}
+      .al-page [style*="padding:32px"]{padding:24px !important}
     }
     @media (max-width:480px){
       .al-page{padding-left:2px;padding-right:2px}
       .al-page h1{font-size:30px !important}
       .al-page h2{font-size:24px !important}
+      .al-page [style*="padding:0 24px"]{padding-left:16px !important;padding-right:16px !important}
+      .al-page [style*="font-size:30px"]{font-size:26px !important}
     }
   </style>
 </helmet>
@@ -53,8 +64,8 @@
         <h1 style="font-family:var(--font-display);font-weight:800;letter-spacing:-.02em;line-height:1.03;font-size:60px;color:var(--ink-900);margin:20px 0 0">Despertamos la mente <span style="color:var(--gs-blue)">emprendedora</span> de tu hijo/a</h1>
         <p style="margin:22px 0 0;max-width:520px;font-size:17px;line-height:1.6;color:var(--ink-600);text-wrap:pretty">Dos itinerarios en directo para niños y jóvenes de 5.º de Primaria a 4.º de la ESO: <strong style="color:var(--ink-800)">Genyus Academy</strong>, la extraescolar semanal de emprendimiento, y <strong style="color:var(--ink-800)">Genyus Lab</strong>, mentorías grupales quincenales de alto rendimiento.</p>
         <div style="display:flex;align-items:center;gap:22px;margin-top:32px;flex-wrap:wrap">
-          <a href="#inscripcion" style="text-decoration:none;display:inline-flex"><x-import component-from-global-scope="GenyusSchoolDesignSystem_87b1a3.Button" variant="gradient" size="lg" hint-size="auto,52px">Reservar plaza</x-import></a>
-          <a href="#programas" style="display:inline-flex;align-items:center;gap:12px;font-weight:700;color:var(--ink-900)">
+          <a href="#inscripcion" onClick="{{ goForm }}" style="text-decoration:none;display:inline-flex;cursor:pointer"><x-import component-from-global-scope="GenyusSchoolDesignSystem_87b1a3.Button" variant="gradient" size="lg" hint-size="auto,52px">Reservar plaza</x-import></a>
+          <a href="#programas" onClick="{{ goProgramas }}" style="display:inline-flex;align-items:center;gap:12px;font-weight:700;color:var(--ink-900);cursor:pointer">
             <span style="width:40px;height:40px;border-radius:999px;border:1.5px solid var(--ink-300);display:flex;align-items:center;justify-content:center;color:var(--gs-blue)"><i data-lucide="play" style="width:16px;height:16px"></i></span>
             Ver los programas
           </a>
@@ -150,7 +161,7 @@
           </div>
           <div style="border-top:1px solid var(--border-subtle);margin-top:auto;padding-top:20px;display:flex;align-items:center;justify-content:space-between">
             <div style="font-family:var(--font-display);font-weight:800;font-size:30px;color:var(--ink-900)">80 €<span style="font-family:var(--font-body);font-weight:500;font-size:14px;color:var(--ink-500)"> / mes</span></div>
-            <a href="#inscripcion" style="text-decoration:none;display:inline-flex"><x-import component-from-global-scope="GenyusSchoolDesignSystem_87b1a3.Button" variant="secondary" size="md" hint-size="auto,44px">Reservar plaza</x-import></a>
+            <a href="#inscripcion" onClick="{{ goForm }}" style="text-decoration:none;display:inline-flex;cursor:pointer"><x-import component-from-global-scope="GenyusSchoolDesignSystem_87b1a3.Button" variant="secondary" size="md" hint-size="auto,44px">Reservar plaza</x-import></a>
           </div>
         </div>
         <!-- Lab -->
@@ -172,7 +183,7 @@
           </div>
           <div style="border-top:1px solid var(--border-subtle);margin-top:auto;padding-top:20px;display:flex;align-items:center;justify-content:space-between">
             <div style="font-family:var(--font-display);font-weight:800;font-size:30px;color:var(--ink-900)">100 €<span style="font-family:var(--font-body);font-weight:500;font-size:14px;color:var(--ink-500)"> / mes</span></div>
-            <a href="#inscripcion" style="text-decoration:none;display:inline-flex"><x-import component-from-global-scope="GenyusSchoolDesignSystem_87b1a3.Button" variant="gradient" size="md" hint-size="auto,44px">Reservar plaza</x-import></a>
+            <a href="#inscripcion" onClick="{{ goForm }}" style="text-decoration:none;display:inline-flex;cursor:pointer"><x-import component-from-global-scope="GenyusSchoolDesignSystem_87b1a3.Button" variant="gradient" size="md" hint-size="auto,44px">Reservar plaza</x-import></a>
           </div>
         </div>
       </div>
@@ -724,6 +735,8 @@ class Component extends DCLogic {
     const pillOn = { background: "var(--gs-blue)", color: "#fff", boxShadow: "var(--shadow-blue)" };
     const pillOff = { background: "transparent", color: "var(--ink-500)" };
     return {
+      goForm: (e) => this.anchorTo("inscripcion", e, { tab: "reservar" }),
+      goProgramas: (e) => this.anchorTo("programas", e),
       isReservar: tab === "reservar",
       isInfo: tab === "info",
       setReservar: () => this.setState({ tab: "reservar" }),
@@ -773,6 +786,31 @@ class Component extends DCLogic {
       },
       onSubmit: (e) => { e.preventDefault(); },
     };
+  }
+  anchorTo(id, e, extraState) {
+    if (e && e.preventDefault) e.preventDefault();
+    if (extraState) this.setState(extraState);
+    const run = () => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const offset = 24;
+      let node = el.parentElement, box = null;
+      while (node && node !== document.body) {
+        const cs = window.getComputedStyle(node);
+        if (/(auto|scroll|overlay)/.test(cs.overflowY) && node.scrollHeight > node.clientHeight + 4) { box = node; break; }
+        node = node.parentElement;
+      }
+      const top = el.getBoundingClientRect().top;
+      if (box) {
+        box.scrollTo({ top: box.scrollTop + top - box.getBoundingClientRect().top - offset, behavior: "smooth" });
+      } else {
+        const se = document.scrollingElement || document.documentElement;
+        const y = (window.pageYOffset || se.scrollTop || 0) + top - offset;
+        if (window.scrollTo) window.scrollTo({ top: y, behavior: "smooth" });
+        else se.scrollTop = y;
+      }
+    };
+    requestAnimationFrame(() => requestAnimationFrame(run));
   }
   drawIcons() {
     if (typeof window !== "undefined" && window.lucide && window.lucide.createIcons) {
